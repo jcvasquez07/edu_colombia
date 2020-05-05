@@ -1,26 +1,32 @@
 <?php
-$rol = 'administrador';
-switch($rol) {
-    case 'acudiente':
+switch($_SESSION['rol']) {
+    case '4':
+        // acudiente
         include 'menu_lateral/menu_acudiente.php';
         break;
-    case 'administrador':
+    case '1':
+        // administrador
         include 'menu_lateral/menu_administrador.php';
         break;
-    case 'administrativo':
-    case 'secretaria':
+    case '2':
+    case '3':
+        // administrativo y secretaria
         include 'menu_lateral/menu_administrativo.php';
         break;
-    case 'asistente':
+    case '7':
+        // asistente
         include 'menu_lateral/menu_asistente.php';
         break;
-    case 'coordinador':
+    case '6':
+        // coordinador
         include 'menu_lateral/menu_coordinador.php';
         break;
-    case 'docente':
+    case '5':
+        // docente
         include 'menu_lateral/menu_docente.php';
         break;
-    case 'esudiante':
+    case '8':
+        // estudiante
         include 'menu_lateral/menu_estudiante.php';
         break;
     default:

@@ -1,29 +1,29 @@
 <?php
-$rol = filter_input(INPUT_GET, 'r');;
-switch($rol) {
-    case 'acudiente':
-        include 'dashboard_pendiente.php';
-        break;
-    case 'administrador':
+
+switch($_SESSION['rol']) {
+    case '1':
         include 'dashboard_administrador.php';
         break;
-    case 'administrativo':
-    case 'secretaria':
+    case '2':
+    case '3':
         include 'dashboard_pendiente.php';
         break;
-    case 'asistente':
+    case '4':
         include 'dashboard_pendiente.php';
         break;
-    case 'coordinador':
+    case '5':
         include 'dashboard_pendiente.php';
         break;
-    case 'docente':
+    case '6':
         include 'dashboard_pendiente.php';
         break;
-    case 'esudiante':
+    case '7':
         include 'dashboard_pendiente.php';
         break;
     default:
+    case '8':
+        include 'dashboard_pendiente.php';
+        break;
         include 'dashboard_pendiente.php';
         break;
 }
