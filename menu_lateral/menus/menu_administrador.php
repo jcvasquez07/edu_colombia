@@ -13,11 +13,12 @@
         </li>
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="main.php?pagina=listado_usuarios" class="nav-link">
                 <i class="fa fa-user-tie nav-icon"></i>
-                <p>Habilitar usuarios</p>
+                <p>Usuarios</p>
             </a>
-        </li>                              
+        </li> 
+        
         <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="fa fa-unlock-alt nav-icon"></i>

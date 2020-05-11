@@ -2,7 +2,7 @@
 session_start();
 
 // Si caimos en esta página sin tener un usuario logeado, nos vamos
-if($_SESSION['logged'] != TRUE) {
+if ($_SESSION['logged'] != TRUE) {
     header("location:login.php");
     die();
 }
@@ -10,11 +10,14 @@ if($_SESSION['logged'] != TRUE) {
 // La conexión a la base de datos
 include 'conector.php';
 
+// Funciones auxiliares (no todas se usan)
+include 'funciones.php';
+
 // Escogemos qué página vamos a mostrar
-if(isset($_GET['pagina'])) {
+if (isset($_GET['pagina'])) {
     $pagina = filter_input(INPUT_GET, 'pagina');
 } else {
-    $pagina = 'temporal';
+    $pagina = 'dashboard';
 }
 ?>
 
@@ -136,5 +139,8 @@ if(isset($_GET['pagina'])) {
         <script src="dist/js/pages/dashboard.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="dist/js/demo.js"></script>
+        <!-- Scripts Locales -->
+        <script src="dist/js/scripts_locales.js"></script>
+
     </body>
 </html>
