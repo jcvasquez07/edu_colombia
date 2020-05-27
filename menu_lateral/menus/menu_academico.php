@@ -6,6 +6,12 @@
     </a>
     <ul class="nav nav-treeview">
         <li class="nav-item">
+            <a href="main.php?pagina=agregar_estudiante" class="nav-link">
+                <i class="fas fa-user-plus"></i>
+                <p>Agregar Estudiante</p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="fa fa-sitemap nav-icon"></i>
                 <p>Oferta educativa</p>

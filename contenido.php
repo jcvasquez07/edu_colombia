@@ -5,6 +5,11 @@ switch ($pagina) {
         include "dashboard/dashboard.php";
         break;
     
+    // Menu academico
+    case 'agregar_estudiante':
+        include 'estudiantes/agregar_estudiante.php';
+        break;
+    
     // Manejo de Usuarios
     case 'listado_usuarios':
         include 'usuarios/listado_usuarios.php';

@@ -48,7 +48,13 @@ if (isset($_GET['pagina'])) {
         <!-- summernote -->
         <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
         <!-- Google Font: Source Sans Pro -->
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">         
+
+        <!-- Form Helper (https://bootstrapformhelpers.com/) -->
+        <!-- Se usa para los datepickers -->
+        <link href="./dist/css/bootstrap-formhelpers.min.css" rel="stylesheet" media="screen" />
+        <!-- Jasny -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css">
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
         <div class="wrapper">
@@ -133,12 +139,17 @@ if (isset($_GET['pagina'])) {
         <script src="plugins/summernote/summernote-bs4.min.js"></script>
         <!-- overlayScrollbars -->
         <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+
         <!-- AdminLTE App -->
         <script src="dist/js/adminlte.js"></script>
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
         <script src="dist/js/pages/dashboard.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="dist/js/demo.js"></script>
+        <!-- Para los calendarios -->        
+        <script src="dist/js/bootstrap-formhelpers.min.js"></script>
+        <!-- jasny -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/js/jasny-bootstrap.min.js"></script>
         <!-- Scripts Locales -->
         <script src="dist/js/scripts_locales.js"></script>
 
