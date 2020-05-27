@@ -32,7 +32,7 @@
             $resultado = $mysqli->query($query);
             $i = 0;
             while ($row = $resultado->fetch_assoc()) {
-                $nombre = $row['nombre'] . " " . $row['apellido1'] . " " . $row['apellido2'];
+                $nombre = $row['nombre1'] . " " . $row['nombre2'] . " " . $row['apellido1'] . " " . $row['apellido2'];
                 ?>
                 <tr>
                     <th scope="row"><?php echo ++$i; ?></th>

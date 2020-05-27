@@ -1,14 +1,54 @@
 <?php
+session_start();
 if (isset($_POST['guardar'])) {
     // Aqui van las variables que se recogen del formulario
-//    $nombre = arreglar_texto(filter_input(INPUT_POST, 'nombre'));
-//    $apellido1 = arreglar_texto(filter_input(INPUT_POST, 'apellido1'));
-//    $apellido2 = arreglar_texto(filter_input(INPUT_POST, 'apellido2'));
-//    $email = strtolower(arreglar_texto(filter_input(INPUT_POST, 'email')));
-//    $observaciones = arreglar_texto(filter_input(INPUT_POST, 'observaciones'));
-//    $rol = filter_input(INPUT_POST, 'rol');
-//    $genero = filter_input(INPUT_POST, 'genero');
+    $nombre1 = arreglar_texto(filter_input(INPUT_POST, 'nombre1'));
+    $nombre2 = arreglar_texto(filter_input(INPUT_POST, 'nombre2'));
+    $apellido1 = arreglar_texto(filter_input(INPUT_POST, 'apellido1'));
+    $apellido2 = arreglar_texto(filter_input(INPUT_POST, 'apellido2'));
+    $lugar_nacimiento = arreglar_texto(filter_input(INPUT_POST, 'lugar_nacimiento'));
+    $fecha_nacimiento = filter_input(INPUT_POST, 'fecha_nacimiento');
+    $telefono = filter_input(INPUT_POST, 'telefono');
+    $email = strtolower(arreglar_texto(filter_input(INPUT_POST, 'email')));
+    $direccion = arreglar_texto(filter_input(INPUT_POST, 'direccion'));
+    $pais = arreglar_texto(filter_input(INPUT_POST, 'pais'));
+    $numero_identificacion = arreglar_texto(filter_input(INPUT_POST, 'numero_identificacion'));
+    $lugar_expedido = arreglar_texto(filter_input(INPUT_POST, 'lugar_expedido'));
+    $materia_complementaria = arreglar_texto(filter_input(INPUT_POST, 'materia_complementaria'));
+    $genero = arreglar_texto(filter_input(INPUT_POST, 'genero'));
+    $grupo_sanguineo = arreglar_texto(filter_input(INPUT_POST, 'grupo_sanguineo'));
+    $eps = arreglar_texto(filter_input(INPUT_POST, 'eps'));
+    $simat = arreglar_texto(filter_input(INPUT_POST, 'simat'));
+    $nombre_usuario = arreglar_texto(filter_input(INPUT_POST, 'nombre_usuario'));
+    $clave_usuario = arreglar_texto(filter_input(INPUT_POST, 'clave_usuario'));
+    $estado = arreglar_texto(filter_input(INPUT_POST, 'estado'));
+    $observaciones = arreglar_texto(filter_input(INPUT_POST, 'observaciones'));
+    $ingresado_por = $_SESSION['usuario_id'];
+    $ingresado = date();
+    $id_tipo_identificacion = filter_input(INPUT_POST, 'id_tipo_identificacion');
+    $id_acudiente = filter_input(INPUT_POST, 'id_acudiente');
+    $id_coordinador = filter_input(INPUT_POST, 'id_coordinador');
+    $id_programa_academico = filter_input(INPUT_POST, 'id_programa_academico');
+    $id_oferta_educativa = filter_input(INPUT_POST, 'id_oferta_educativa');
+    $id_grupo = filter_input(INPUT_POST, 'id_grupo');
 
+    // Insertar en el listado de usuarios. 
+    // El rol será 8 (estudiante)
+    $query = "INSERT INTO usuarios
+        SET nombre1 = '$nombre1',
+            nombre2 = '$nombre2',
+            apellido1 = '$apellido1',
+            apellido2 = '$apellido2',
+            email = '$email',
+            clave = '$clave',
+            observaciones = '$observaciones',
+            rol = '8',
+            activo = '$activo',
+            creado_por = '$_SESSION[usuario_id]'";
+    $resultado = $mysqli->query($query);
+
+    // Insertar en la tabla de estudiantes
+    // Subir la foto
     // Consulta para insertar datos
 //    $query = "INSERT INTO $tabla
 //        SET nombre = '$nombre',
@@ -20,7 +60,6 @@ if (isset($_POST['guardar'])) {
 //            rol = '$rol',
 //            genero = '$genero'";
 //    $resultado = $mysqli->query($query);
-
     // Comprobamos el resultado de la operación anterior
     if ($error = $mysqli->error) {
         // Ocurrió un error, mostramos un mensaje
@@ -67,10 +106,10 @@ if (isset($_POST['guardar'])) {
                 <div class="form-group row">
                     <label for="nombre" class="col-sm-3 col-form-label">Nombres</label>
                     <div class="col-sm-4">
-                        <input type="text" name="nombre1" class="form-control" id="nombre" placeholder="Primer Nombre" required>
+                        <input type="text" name="nombre1" class="form-control" id="nombre1" placeholder="Primer Nombre" required>
                     </div>
                     <div class="col-sm-5">
-                        <input type="text" name="nombre2" class="form-control" id="nombre" placeholder="Otros Nombres" required>
+                        <input type="text" name="nombre2" class="form-control" id="nombre2" placeholder="Otros Nombres" required>
                     </div>
                 </div>
 
@@ -136,11 +175,11 @@ if (isset($_POST['guardar'])) {
                     <div class="col-sm-3">    
                         <select class="form-control" id="tipo_identificacion" name="tipo_identificacion" required>
                             <option value=""> -- Seleccione -- </option>
-                            <?php
-                                $query = "SELECT * FROM tipos_identificaciones WHERE 1";
-                            $resultado = $mysqli->query($query);
-                            while ($row = $resultado->fetch_assoc()) {
-                                ?>
+<?php
+$query = "SELECT * FROM tipos_identificaciones WHERE 1";
+$resultado = $mysqli->query($query);
+while ($row = $resultado->fetch_assoc()) {
+    ?>
                                 <option value="<?php echo $row['id']; ?>"><?php echo ucfirst($row['tipo_identificacion']); ?></option>
                                 <?php
                             }
@@ -148,6 +187,7 @@ if (isset($_POST['guardar'])) {
                         </select>
                     </div>
                 </div>
+
                 <div class="form-group row">
                     <label for="lugar_expedido" class="col-sm-3 col-form-label">Lugar de Expedici&#243;n del Documento</label>
                     <div class="col-sm-9">
@@ -160,11 +200,11 @@ if (isset($_POST['guardar'])) {
                     <div class="col-sm-3">    
                         <select class="form-control" id="acudiente" name="acudiente">
                             <option value=""> -- Seleccione -- </option>
-                            <?php
-                            $query = "SELECT * FROM acudientes WHERE 1";
-                            $resultado = $mysqli->query($query);
-                            while ($row = $resultado->fetch_assoc()) {
-                                ?>
+<?php
+$query = "SELECT * FROM acudientes WHERE 1";
+$resultado = $mysqli->query($query);
+while ($row = $resultado->fetch_assoc()) {
+    ?>
                                 <option value="<?php echo $row['id']; ?>"><?php echo ucfirst($row['nombre_acudiente']); ?></option>
                                 <?php
                             }
@@ -176,11 +216,11 @@ if (isset($_POST['guardar'])) {
                     <div class="col-sm-3">    
                         <select class="form-control" id="coordinador" name="coordinador">
                             <option value=""> -- Seleccione -- </option>
-                            <?php
-                            $query = "SELECT * FROM coordinadores WHERE 1";
-                            $resultado = $mysqli->query($query);
-                            while ($row = $resultado->fetch_assoc()) {
-                                ?>
+<?php
+$query = "SELECT * FROM coordinadores WHERE 1";
+$resultado = $mysqli->query($query);
+while ($row = $resultado->fetch_assoc()) {
+    ?>
                                 <option value="<?php echo $row['id']; ?>"><?php echo ucfirst($row['nombre_coordinador']); ?></option>
                                 <?php
                             }
@@ -194,27 +234,27 @@ if (isset($_POST['guardar'])) {
                     <div class="col-sm-3">    
                         <select class="form-control" id="programa_academico" name="programa_academico">
                             <option value=""> -- Seleccione -- </option>
-                            <?php
-                            $query = "SELECT * FROM programas_academicos WHERE 1";
-                            $resultado = $mysqli->query($query);
-                            while ($row = $resultado->fetch_assoc()) {
-                                ?>
+<?php
+$query = "SELECT * FROM programas_academicos WHERE 1";
+$resultado = $mysqli->query($query);
+while ($row = $resultado->fetch_assoc()) {
+    ?>
                                 <option value="<?php echo $row['id']; ?>"><?php echo ucfirst($row['nombre_programa']); ?></option>
                                 <?php
                             }
                             ?>
                         </select>
                     </div>
-                    
+
                     <label for="oferta_educativa" class="col-sm-2 offset-1 col-form-label">Oferta Educativa</label>
                     <div class="col-sm-3">    
                         <select class="form-control" id="oferta_educativa" name="oferta_educativa">
                             <option value=""> -- Seleccione -- </option>
-                            <?php
-                            $query = "SELECT * FROM ofertas_educativas WHERE 1";
-                            $resultado = $mysqli->query($query);
-                            while ($row = $resultado->fetch_assoc()) {
-                                ?>
+<?php
+$query = "SELECT * FROM ofertas_educativas WHERE 1";
+$resultado = $mysqli->query($query);
+while ($row = $resultado->fetch_assoc()) {
+    ?>
                                 <option value="<?php echo $row['id']; ?>"><?php echo ucfirst($row['nombre_oferta']); ?></option>
                                 <?php
                             }
@@ -222,17 +262,17 @@ if (isset($_POST['guardar'])) {
                         </select>
                     </div>
                 </div>                
-                
+
                 <div class="form-group row">                    
                     <label for="grupo" class="col-sm-3 col-form-label">Grupo</label>
                     <div class="col-sm-3">    
                         <select class="form-control" id="grupo" name="grupo">
                             <option value=""> -- Seleccione -- </option>
-                            <?php
-                            $query = "SELECT * FROM grupos WHERE 1";
-                            $resultado = $mysqli->query($query);
-                            while ($row = $resultado->fetch_assoc()) {
-                                ?>
+<?php
+$query = "SELECT * FROM grupos WHERE 1";
+$resultado = $mysqli->query($query);
+while ($row = $resultado->fetch_assoc()) {
+    ?>
                                 <option value="<?php echo $row['id']; ?>"><?php echo ucfirst($row['nombre_grupo']); ?></option>
                                 <?php
                             }
@@ -292,9 +332,9 @@ if (isset($_POST['guardar'])) {
                     <div class="col-sm-3">
                         <input type="text" name="nombre_usuario" class="form-control" id="nombre_usuario" placeholder="Nombre de Usuario" required>
                     </div>
-                    <label for="nombre_usuario" class="col-sm-2 col-form-label">Contrase&#241;a</label>
+                    <label for="clave_usuario" class="col-sm-2 col-form-label">Contrase&#241;a</label>
                     <div class="col-sm-4">
-                        <input type="text" name="clave" class="form-control" id="clave" placeholder="Contrase&#241;a" required>
+                        <input type="text" name="clave_usuario" class="form-control" id="clave_usuario" placeholder="Contrase&#241;a" required>
                     </div>
                 </div>
 
@@ -345,6 +385,6 @@ if (isset($_POST['guardar'])) {
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>
