@@ -77,10 +77,51 @@ if (isset($_POST['guardar'])) {
                 id_oferta_educativa = '$id_oferta_educativa',
                 id_usuario = '$ultimo_id'
                 ";
-        if (!$resultado = $mysqli->query($query)) {
-            $error = $mysqli->error;
+        $resultado = $mysqli->query($query);
+        if (!$mysqli->error) {
+            // Se insertó correctamente el estudiante, procesamos la foto
+            if (is_uploaded_file($_FILES['foto']['tmp_name'])) {
+                // Comprobamos la extension del archivo
+                $extension = getExtension(stripslashes($_FILES['foto']['name']));
+                if (($extension != "jpg") && ($extension != "jpeg")) {
+                    echo "<div class='alert alert-danger' role='alert'>No se reconoce el tipo de archivo (" . strtoupper($extension) . "). Los tipos permitidos son JPG y JPEG.</div>";
+                } else {
+                    // Comprobamos que el archivo no sea mayor a 1MB
+                    $size = filesize($_FILES['foto']['tmp_name']);
+                    if ($size > MAX_SIZE * 1024) {
+                        echo "<div class='alert alert-danger' role='alert'>El archivo es demasiado grande (" . human_filesize($size) . "). El tama&#241;o m&#225;ximo es 1MB.</div>";
+                    } else {
+                        $archivo_destino = arreglar_nombre_foto($_FILES['foto']['name']);
+                        $archivo = $folder . "/" . $archivo_destino;
+                        if (copy($_FILES['foto']['tmp_name'], $archivo)) {
+
+                            echo "<div class='alert alert-success' role='alert'>El archivo se copi&#243; correctamente</div>";
+                            $operacion = 'INSERT INTO';
+                            $query = "INSERT INTO imagenes
+                        SET archivo = '$archivo',
+                            tipo = '$tipo',
+                            descripcion = '$descripcion', 
+                            user_id = '$user_id',
+                            codigo_id = '$codigo_id'";
+
+                            include 'ejecutar_sql.php';
+                        } else {
+                            echo "<div class='alert alert-danger' role='alert'>No se pudo copiar el archivo.</div>";
+                        }
+                    }
+                }
+            } else {
+                if ($_FILES['foto']['error'] != UPLOAD_ERR_OK) {
+                    echo "<div class='alert alert-danger' role='alert'>Ocurri&#243; un error al tratar de subir el archivo. El servidor dijo: " . file_upload_error_message($_FILES['foto']['error']) . ".</div>";
+                }
+            }
+        } else {
+            $error = "No se pudo insertar en la tabla de estudiantes. El servidor dijo: " . htmlspecialchars($mysqli->error);
         }
     }
+
+
+
 
     if ($error != '') {
         // Ocurrió un error, mostramos un mensaje
@@ -122,10 +163,10 @@ if (isset($_POST['guardar'])) {
 
 <!-- Formulario -->
 <div class="container-fluid">
-    <div class="row">
-        <!-- Primera columna, el formulario -->
-        <div class="col-md-6 mx-4">
-            <form method="POST" action="">
+    <form enctype="multipart/form-data" method="POST" action="">
+        <div class="row">
+            <!-- Primera columna, el formulario -->
+            <div class="col-md-6 mx-4">
 
                 <div class="form-group row">
                     <label for="nombre" class="col-sm-3 col-form-label">Nombres</label>
@@ -431,24 +472,24 @@ if (isset($_POST['guardar'])) {
                         </button>
                     </div>
                 </div>
-            </form>
-        </div>  
+            </div>  
 
-        <div class="col-md-4 mx-2">
-            <div class="fileinput fileinput-new" data-provides="fileinput">
-                <div class="fileinput-new img-thumbnail" style="width: 320px; height: 180px; background-image: url('./dist/img/no_foto.png')">
-                </div>
-                <div class="fileinput-preview fileinput-exists img-thumbnail" style="max-width: 320px; max-height: 240px;"></div>
-                <div>
-                    <span class="btn btn-outline-secondary btn-file">
-                        <span class="fileinput-new">Seleccionar archivo</span>
-                        <span class="fileinput-exists">Cambiar</span>
-                        <input type="file" name="..."></span>
-                    <a href="#" class="btn btn-outline-secondary fileinput-exists" data-dismiss="fileinput">Quitar</a>
+            <div class="col-md-4 mx-2">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-new img-thumbnail" style="width: 320px; height: 180px; background-image: url('./dist/img/no_foto.png')">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists img-thumbnail" style="max-width: 320px; max-height: 240px;"></div>
+                    <div>
+                        <span class="btn btn-outline-secondary btn-file">
+                            <span class="fileinput-new">Seleccionar archivo</span>
+                            <span class="fileinput-exists">Cambiar</span>
+                            <input type="file" name="foto"></span>
+                        <a href="#" class="btn btn-outline-secondary fileinput-exists" data-dismiss="fileinput">Quitar</a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
+    </form>
 </div>
 
