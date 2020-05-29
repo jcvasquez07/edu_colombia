@@ -206,7 +206,7 @@ function file_upload_error_message($error_code) {
 }
 
 function SetRandomPassword() {
-// genera una clave aleatoria alfanumerica de 8 caracteres
+// genera una clave aleatoria de 8 caracteres
     $pass = '';
     $chars = array(
         "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
@@ -215,7 +215,7 @@ function SetRandomPassword() {
         "k", "K", "l", "L", "m", "M", "n", "N", "o", "O",
         "p", "P", "q", "Q", "r", "R", "s", "S", "t", "T",
         "u", "U", "v", "V", "w", "W", "x", "X", "y", "Y",
-        "z", "Z");
+        "z", "Z", "?", "*", "@", "!", "$", ")", "(", "%");
 
     $count = count($chars) - 1;
 

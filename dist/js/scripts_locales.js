@@ -11,3 +11,12 @@ function setSelectedIndex(s, valsearch) {
     return;
 }
 
+// Datepickers
+$('.datepicker').datepicker({
+    format: "dd/mm/yyyy",
+    todayBtn: "linked",
+    language: "es",
+    autoclose: true,
+    todayHighlight: true
+});
+

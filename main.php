@@ -48,14 +48,17 @@ if (isset($_GET['pagina'])) {
         <!-- summernote -->
         <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
         <!-- Google Font: Source Sans Pro -->
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">         
-
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">       
         <!-- Form Helper (https://bootstrapformhelpers.com/) -->
-        <!-- Se usa para los datepickers -->
         <link href="./dist/css/bootstrap-formhelpers.min.css" rel="stylesheet" media="screen" />
+        <!-- Datepickers (https://bootstrap-datepicker.readthedocs.io/en/latest/index.html#) -->        
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" />
         <!-- Jasny -->
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css">     
+        <!-- estilos locales -->
+        <link href="./dist/css/estilos.css" rel="stylesheet" />
     </head>
+    
     <body class="hold-transition sidebar-mini layout-fixed">
         <div class="wrapper">
 
@@ -146,8 +149,11 @@ if (isset($_GET['pagina'])) {
         <script src="dist/js/pages/dashboard.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="dist/js/demo.js"></script>
-        <!-- Para los calendarios -->        
+        <!-- Form helpers -->
         <script src="dist/js/bootstrap-formhelpers.min.js"></script>
+        <!-- Para los calendarios -->                
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.es.min.js"></script>
         <!-- jasny -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/js/jasny-bootstrap.min.js"></script>
         <!-- Scripts Locales -->
