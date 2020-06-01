@@ -34,7 +34,7 @@ if (isset($_POST['guardar'])) {
     $id_grupo = filter_input(INPUT_POST, 'grupo');
 
     $error = "";
-    // Insertar en el listado de usuarios. El rol será 8 (estudiante)
+    // Insertar en la tabla de usuarios. El rol será 8 (estudiante)
     $clave = password_hash($clave_texto, PASSWORD_DEFAULT);
     $query = "INSERT INTO usuarios
         SET nombre1 = '$nombre1',
@@ -80,6 +80,11 @@ if (isset($_POST['guardar'])) {
         $resultado = $mysqli->query($query);
         if (!$mysqli->error) {
             // Se insertó correctamente el estudiante, procesamos la foto
+            // Primero creamos el directorio
+            $tipo_usuario = "estudiantes";
+            include 'crear_directorio.php';
+
+            // Ahora colocamos la foto
             if (is_uploaded_file($_FILES['foto']['tmp_name'])) {
                 // Comprobamos la extension del archivo
                 $extension = getExtension(stripslashes($_FILES['foto']['name']));
@@ -91,20 +96,11 @@ if (isset($_POST['guardar'])) {
                     if ($size > MAX_SIZE * 1024) {
                         echo "<div class='alert alert-danger' role='alert'>El archivo es demasiado grande (" . human_filesize($size) . "). El tama&#241;o m&#225;ximo es 1MB.</div>";
                     } else {
-                        $archivo_destino = arreglar_nombre_foto($_FILES['foto']['name']);
-                        $archivo = $folder . "/" . $archivo_destino;
+                        // El archivo siempre se llamara "foto_personal"
+                        $archivo = $ultimo_id . "/foto_personal." . $extension;
                         if (copy($_FILES['foto']['tmp_name'], $archivo)) {
 
                             echo "<div class='alert alert-success' role='alert'>El archivo se copi&#243; correctamente</div>";
-                            $operacion = 'INSERT INTO';
-                            $query = "INSERT INTO imagenes
-                        SET archivo = '$archivo',
-                            tipo = '$tipo',
-                            descripcion = '$descripcion', 
-                            user_id = '$user_id',
-                            codigo_id = '$codigo_id'";
-
-                            include 'ejecutar_sql.php';
                         } else {
                             echo "<div class='alert alert-danger' role='alert'>No se pudo copiar el archivo.</div>";
                         }
