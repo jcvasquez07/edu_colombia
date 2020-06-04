@@ -57,6 +57,9 @@ if (isset($_GET['pagina'])) {
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css">     
         <!-- estilos locales -->
         <link href="./dist/css/estilos.css" rel="stylesheet" />
+        
+        <!-- jQuery -->
+        <script src="plugins/jquery/jquery.min.js"></script>
     </head>
     
     <body class="hold-transition sidebar-mini layout-fixed">
@@ -114,8 +117,6 @@ if (isset($_GET['pagina'])) {
         <!-- ./wrapper -->
 
         <!-- SCRIPTS -->
-        <!-- jQuery -->
-        <script src="plugins/jquery/jquery.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
         <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

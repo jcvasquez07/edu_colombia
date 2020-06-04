@@ -75,6 +75,7 @@ if (isset($_POST['guardar'])) {
                 id_coordinador = '$id_coordinador',
                 id_programa_academico = '$id_programa_academico',
                 id_oferta_educativa = '$id_oferta_educativa',
+                id_grupo = '$id_grupo',
                 id_usuario = '$ultimo_id'
                 ";
         $resultado = $mysqli->query($query);
@@ -140,9 +141,7 @@ if (isset($_POST['guardar'])) {
         </div>
         <?php
     }
-} else {
-    echo "Nada";
-}
+} 
 ?>
 
 <!-- Titulo de la página -->

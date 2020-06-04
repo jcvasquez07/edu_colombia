@@ -1,5 +1,6 @@
 <?php
 if (isset($_POST['guardar'])) {
+    // Esto se actualiza en la tabla de usuarios
     $id_usuario = filter_input(INPUT_POST, 'id_usuario');
     $nombre1 = arreglar_texto(filter_input(INPUT_POST, 'nombre1'));
     $nombre2 = arreglar_texto(filter_input(INPUT_POST, 'nombre2'));
@@ -9,6 +10,28 @@ if (isset($_POST['guardar'])) {
     $observaciones = arreglar_texto(filter_input(INPUT_POST, 'observaciones'));
     $rol = filter_input(INPUT_POST, 'rol');
     $activo = filter_input(INPUT_POST, 'activo');
+
+    // Esto se actualiza en la tabla de estudiantes
+    $lugar_nacimiento = arreglar_texto(filter_input(INPUT_POST, 'lugar_nacimiento'));
+    $fecha_nacimiento = arreglar_fecha(filter_input(INPUT_POST, 'fecha_nacimiento'));
+    $telefono = filter_input(INPUT_POST, 'telefono');
+    $direccion = arreglar_texto(filter_input(INPUT_POST, 'direccion'));
+    $pais = arreglar_texto(filter_input(INPUT_POST, 'pais'));
+    $numero_identificacion = arreglar_texto(filter_input(INPUT_POST, 'numero_identificacion'));
+    $lugar_expedido = arreglar_texto(filter_input(INPUT_POST, 'lugar_expedido'));
+    $materia_complementaria = arreglar_texto(filter_input(INPUT_POST, 'materia_complementaria'));
+    $genero = filter_input(INPUT_POST, 'genero');
+    $grupo_sanguineo = filter_input(INPUT_POST, 'grupo_sanguineo');
+    $eps = arreglar_texto(filter_input(INPUT_POST, 'eps'));
+    $simat = arreglar_texto(filter_input(INPUT_POST, 'simat'));
+    $estado = filter_input(INPUT_POST, 'estado');
+    $ingresado_por = $_SESSION['usuario_id'];
+    $id_tipo_identificacion = filter_input(INPUT_POST, 'tipo_identificacion');
+    $id_acudiente = filter_input(INPUT_POST, 'acudiente');
+    $id_coordinador = filter_input(INPUT_POST, 'coordinador');
+    $id_programa_academico = filter_input(INPUT_POST, 'programa_academico');
+    $id_oferta_educativa = filter_input(INPUT_POST, 'oferta_educativa');
+    $id_grupo = filter_input(INPUT_POST, 'grupo');
 
     $query = "UPDATE usuarios
         SET nombre1 = '$nombre1',
@@ -21,7 +44,38 @@ if (isset($_POST['guardar'])) {
             activo = '$activo'
         WHERE id = '$id_usuario'";
     $resultado = $mysqli->query($query);
-    echo $msg = ($resultado) ? '<div class="alert alert-success alert-dismissible fade show" role="alert">La informaci&#243;n se actualiz&#243; correctamente.<button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button></div>' : ('<div class="alert alert-danger alert-dismissible fade show" role="alert">Error: No se pudo actualizar la informaci&#243;n, el servidor dijo <strong>"' . $mysqli->error . '"<strong><button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button></div>');
+    if (!$mysqli->error) {
+        $query = "UPDATE estudiantes            
+            SET lugar_nacimiento = '$lugar_nacimiento',
+                telefono = '$telefono',
+                direccion = '$direccion',
+                pais = '$pais',
+                numero_identificacion = '$numero_identificacion',
+                lugar_expedido = '$lugar_expedido',
+                materia_complementaria = '$materia_complementaria',
+                genero = '$genero',
+                grupo_sanguineo = '$grupo_sanguineo',
+                eps = '$eps',
+                simat = '$simat',
+                estado = '$estado',
+                id_tipo_identificacion = '$id_tipo_identificacion',
+                id_acudiente = '$id_acudiente',
+                id_coordinador = '$id_coordinador',
+                id_programa_academico = '$id_programa_academico',
+                id_oferta_educativa = '$id_oferta_educativa',
+                id_grupo = '$id_grupo'
+            WHERE id_usuario = '$id_usuario'
+                ";
+        $resultado = $mysqli->query($query);
+        if (!$mysqli->error) {
+            // Se actualizaron correctamente ambas tablas
+            echo $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">La informaci&#243;n se actualiz&#243; correctamente.<button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button></div>';
+        } else {
+            echo $msg = '<div class="alert alert-danger alert-dismissible fade show" role="alert">Error: No se pudo actualizar la informaci&#243;n en la tabla de estudiantes, el servidor dijo <strong>"' . $mysqli->error . '"<strong><button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button></div>';
+        }
+    } else {
+        echo $msg = '<div class="alert alert-danger alert-dismissible fade show" role="alert">Error: No se pudo actualizar la informaci&#243;n en la tabla de usuarios, el servidor dijo <strong>"' . $mysqli->error . '"<strong><button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button></div>';
+    }
 }
 
 if (isset($_POST['borrar'])) {
@@ -79,8 +133,11 @@ $row = $resultado->fetch_assoc();
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Listado de Usuarios</h1>
+                <h1 class="m-0 text-dark">Editar Usuario</h1>
             </div>
+        </div>
+        <div>
+            <a href="main.php?pagina=listado_usuarios" type="button" class="btn btn-info">Listado de Usuarios</a>
         </div>
     </div>
 </div>
@@ -129,8 +186,6 @@ $row = $resultado->fetch_assoc();
                     <label for="rol" class="col-sm-3 col-form-label">Rol</label>
                     <div class="col-sm-3">  
                         <select class="form-control" id="roles" name="rol">
-                            <option value="<?php echo $row['rol_id']; ?>" selected=""><?php echo ucfirst($row['rol']); ?></option>
-                            <option>---------</option>
                             <?php
                             $query_rol = "SELECT * FROM roles WHERE 1";
                             $resultado_rol = $mysqli->query($query_rol);
@@ -164,6 +219,13 @@ $row = $resultado->fetch_assoc();
                     </div>
                 </div>
 
+                <?php
+                if ($row['rol_id'] == 8) {
+                    // ¿estamos editando un estudiante?
+                    include './estudiantes/editar_estudiante.php';
+                }
+                ?>
+
                 <div class="form-group row">
                     <div class="col-sm-5 offset-3">
                         <button type="submit" name="guardar" class="btn btn-success" >
@@ -179,13 +241,20 @@ $row = $resultado->fetch_assoc();
                             </span>&nbsp; Resetear Clave
                         </button>
                     </div>
-                    <div class="col-sm-2">
-                        <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target="#modalBorrar">
-                            <span class="btn-label">
-                                <i class="fas fa-trash"></i>
-                            </span>&nbsp; Borrar
-                        </button>
-                    </div>
+                    <?php
+                    // El botón de borrado solo le aparecerá a los administradores
+                    if ($row['rol_id'] == 1) {
+                        ?>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target="#modalBorrar">
+                                <span class="btn-label">
+                                    <i class="fas fa-trash"></i>
+                                </span>&nbsp; Borrar
+                            </button>
+                        </div>
+                        <?php
+                    }
+                    ?>
                 </div>
             </form>
         </div>
@@ -259,3 +328,9 @@ $row = $resultado->fetch_assoc();
         </div>
     </div>
 </div>
+
+<script>
+    $(window).on("load", function () {
+        setSelectedIndex(document.getElementById("roles"), "<?php echo $row['rol_id']; ?>");
+    });
+</script>
