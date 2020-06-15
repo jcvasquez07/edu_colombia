@@ -11,27 +11,10 @@ if (isset($_POST['guardar'])) {
     $rol = filter_input(INPUT_POST, 'rol');
     $activo = filter_input(INPUT_POST, 'activo');
 
-    // Esto se actualiza en la tabla de estudiantes
-    $lugar_nacimiento = arreglar_texto(filter_input(INPUT_POST, 'lugar_nacimiento'));
-    $fecha_nacimiento = arreglar_fecha(filter_input(INPUT_POST, 'fecha_nacimiento'));
+    // Esto va en la tabla de personal
     $telefono = filter_input(INPUT_POST, 'telefono');
     $direccion = arreglar_texto(filter_input(INPUT_POST, 'direccion'));
-    $pais = arreglar_texto(filter_input(INPUT_POST, 'pais'));
-    $numero_identificacion = arreglar_texto(filter_input(INPUT_POST, 'numero_identificacion'));
-    $lugar_expedido = arreglar_texto(filter_input(INPUT_POST, 'lugar_expedido'));
-    $materia_complementaria = arreglar_texto(filter_input(INPUT_POST, 'materia_complementaria'));
-    $genero = filter_input(INPUT_POST, 'genero');
-    $grupo_sanguineo = filter_input(INPUT_POST, 'grupo_sanguineo');
-    $eps = arreglar_texto(filter_input(INPUT_POST, 'eps'));
-    $simat = arreglar_texto(filter_input(INPUT_POST, 'simat'));
-    $estado = filter_input(INPUT_POST, 'estado');
     $ingresado_por = $_SESSION['usuario_id'];
-    $id_tipo_identificacion = filter_input(INPUT_POST, 'tipo_identificacion');
-    $id_acudiente = filter_input(INPUT_POST, 'acudiente');
-    $id_coordinador = filter_input(INPUT_POST, 'coordinador');
-    $id_programa_academico = filter_input(INPUT_POST, 'programa_academico');
-    $id_oferta_educativa = filter_input(INPUT_POST, 'oferta_educativa');
-    $id_grupo = filter_input(INPUT_POST, 'grupo');
 
     $query = "UPDATE usuarios
         SET nombre1 = '$nombre1',
@@ -45,25 +28,9 @@ if (isset($_POST['guardar'])) {
         WHERE id = '$id_usuario'";
     $resultado = $mysqli->query($query);
     if (!$mysqli->error) {
-        $query = "UPDATE estudiantes            
-            SET lugar_nacimiento = '$lugar_nacimiento',
-                telefono = '$telefono',
-                direccion = '$direccion',
-                pais = '$pais',
-                numero_identificacion = '$numero_identificacion',
-                lugar_expedido = '$lugar_expedido',
-                materia_complementaria = '$materia_complementaria',
-                genero = '$genero',
-                grupo_sanguineo = '$grupo_sanguineo',
-                eps = '$eps',
-                simat = '$simat',
-                estado = '$estado',
-                id_tipo_identificacion = '$id_tipo_identificacion',
-                id_acudiente = '$id_acudiente',
-                id_coordinador = '$id_coordinador',
-                id_programa_academico = '$id_programa_academico',
-                id_oferta_educativa = '$id_oferta_educativa',
-                id_grupo = '$id_grupo'
+        $query = "UPDATE personal            
+            SET telefono = '$telefono',
+                direccion = '$direccion'
             WHERE id_usuario = '$id_usuario'
                 ";
         $resultado = $mysqli->query($query);
@@ -124,7 +91,13 @@ if (isset($_POST['resetearClave'])) {
 }
 
 $id_usuario = filter_input(INPUT_GET, 'id_usuario');
-$query = "SELECT usuarios.*, roles.id as rol_id, roles.rol FROM usuarios, roles WHERE usuarios.id = '$id_usuario' AND usuarios.rol = roles.id";
+$query = "SELECT 
+            usuarios.*, roles.id as rol_id, roles.rol, personal.direccion, personal.telefono 
+        FROM usuarios, roles , personal
+        WHERE 
+            usuarios.id = '$id_usuario' AND 
+            personal.id_usuario = usuarios.id AND
+            usuarios.rol = roles.id";
 $resultado = $mysqli->query($query);
 $row = $resultado->fetch_assoc();
 ?>
@@ -133,11 +106,22 @@ $row = $resultado->fetch_assoc();
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Editar Usuario</h1>
+                <h1 class="m-0 text-dark">Editar <?php echo ucfirst($row['rol']); ?></h1>
             </div>
         </div>
         <div>
-            <a href="main.php?pagina=listado_usuarios" type="button" class="btn btn-info">Listado de Usuarios</a>
+            <?php
+            switch ($row['rol']) {
+                case 'acudiente':
+                case 'docente':
+                    $pagina_listado = "listado_" . $row['rol'] . "s";
+                    break;
+                default:
+                    $pagina_listado = "listado_" . $row['rol'] . "es";
+                    break;
+            }
+            ?>
+            <a href="main.php?pagina=<?php echo $pagina_listado; ?>" type="button" class="btn btn-info">Volver al listado</a>
         </div>
     </div>
 </div>
@@ -169,9 +153,20 @@ $row = $resultado->fetch_assoc();
                 </div>
 
                 <div class="form-group row">
-                    <label for="email" class="col-sm-3 col-form-label">Email</label>
+                    <label for="telefono" class="col-sm-3 col-form-label">Tel&#233;fono</label>
+                    <div class="col-sm-3">
+                        <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Tel&#233;fono" value="<?php echo $row['telefono']; ?>" required>
+                    </div>
+                    <label for="email" class="col-sm-1 col-form-label">Email</label>
+                    <div class="col-sm-5">
+                        <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?php echo $row['email']; ?>" required>
+                    </div>
+                </div>  
+
+                <div class="form-group row">
+                    <label for="direccion" class="col-sm-3 col-form-label">Direcci&#243;n de Residencia</label>
                     <div class="col-sm-9">
-                        <input type="text" name="email" class="form-control" id="email" value="<?php echo $row['email']; ?>">
+                        <textarea name="direccion" class="form-control" id="direccion" rows="3"><?php echo $row['direccion']; ?></textarea>
                     </div>
                 </div>
 
@@ -234,7 +229,7 @@ $row = $resultado->fetch_assoc();
                             </span>&nbsp; Guardar
                         </button>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                         <button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modalResetClave">
                             <span class="btn-label">
                                 <i class="fas fa-key"></i>
@@ -248,7 +243,7 @@ $row = $resultado->fetch_assoc();
                     // El botón de borrado solo le aparecerá a los administradores
                     if ($_SESSION['rol'] == 1) {
                         ?>
-                        <div class="col-sm-2">
+                        <div class="col-sm-5 offset-3">
                             <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target="#modalBorrar">
                                 <span class="btn-label">
                                     <i class="fas fa-trash"></i>

@@ -18,7 +18,6 @@
             <div class="small-box bg-info">
                 <div class="inner">
                     <h3>150</h3>
-
                     <p>Estudiantes</p>
                 </div>
                 <div class="icon">
@@ -34,7 +33,6 @@
             <div class="small-box bg-success">
                 <div class="inner">
                     <h3>53</h3>
-
                     <p>Docentes</p>
                 </div>
                 <div class="icon">
@@ -50,7 +48,6 @@
             <div class="small-box bg-warning">
                 <div class="inner">
                     <h3>44</h3>
-
                     <p>Coordinadores</p>
                 </div>
                 <div class="icon">
@@ -66,7 +63,6 @@
             <div class="small-box bg-danger">
                 <div class="inner">
                     <h3>65</h3>
-
                     <p>Materias</p>
                 </div>
                 <div class="icon">

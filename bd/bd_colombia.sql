@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 04-06-2020 a las 12:37:54
--- Versión del servidor: 10.3.22-MariaDB-log-cll-lve
+-- Tiempo de generación: 15-06-2020 a las 11:46:58
+-- Versión del servidor: 10.3.23-MariaDB-log-cll-lve
 -- Versión de PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -21,50 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `jcprfvau_colombia`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `acudientes`
---
-
-CREATE TABLE `acudientes` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `nombre_acudiente` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `acudientes`
---
-
-INSERT INTO `acudientes` (`id`, `nombre_acudiente`) VALUES
-(1, 'Acudiente 1'),
-(2, 'Acudiente 2'),
-(3, 'Acudiente 3'),
-(4, 'Acudiente 4'),
-(5, 'Acudiente 5');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `coordinadores`
---
-
-CREATE TABLE `coordinadores` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `nombre_coordinador` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `coordinadores`
---
-
-INSERT INTO `coordinadores` (`id`, `nombre_coordinador`) VALUES
-(1, 'Coordinador 1'),
-(2, 'Coordinador 2'),
-(3, 'Coordinador 3'),
-(4, 'Coordinador 4'),
-(5, 'Coordinador 5');
 
 -- --------------------------------------------------------
 
@@ -154,6 +110,28 @@ INSERT INTO `ofertas_educativas` (`id`, `nombre_oferta`) VALUES
 (4, 'Educaci&#243;n B&#225;sica Acad&#233;mica'),
 (5, 'Educaci&#243;n para el Trabajo y el Desarrollo Humano'),
 (6, 'Formaci&#243;n Complementaria');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `personal`
+--
+
+CREATE TABLE `personal` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `telefono` varchar(30) NOT NULL,
+  `direccion` varchar(500) NOT NULL,
+  `id_usuario` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `personal`
+--
+
+INSERT INTO `personal` (`id`, `telefono`, `direccion`, `id_usuario`) VALUES
+(1, '7890-1234', 'ESTA ES LA DIRECCI&#211;N DEL COORDINADOR 1', 11),
+(2, '9012-3456', 'ACUDIENTE 1', 13),
+(3, '2345-6789', 'ROCADURA CASA 23', 12);
 
 -- --------------------------------------------------------
 
@@ -256,29 +234,20 @@ INSERT INTO `usuarios` (`id`, `nombre1`, `nombre2`, `apellido1`, `apellido2`, `e
 (1, 'ALAN', 'U/N', 'BRITO', 'DELGADO', 'admin@gmail.com', '$2y$10$v3qF9BXdaSbHqDAQqTewmOjkFSyi4s.QXfb7Hzm4MlVX8sdGt72vO', 'LA CLAVE ES PASS1 -', 1, 'SI', '2020-05-27 16:41:44', 1),
 (2, 'PERLA', 'MARINA', 'HERNANDEZ', 'SALAZ&#193;R', 'perlita@email.com', '$2y$10$kL.M3H2cygcYt9tDacTFL.4b8q5LZe7Gx5SuyA9CT0W1SJPpY75ey', 'ESTE USUARIO TIENE UNA CLAVE ALEATORIA', 8, 'SI', '2020-05-27 16:41:44', 1),
 (3, 'MAR&#205;A', 'AZUCENA DEL CARMEN', 'RAM&#205;REZ', 'DELGADO', 'mary95@yahoo.com', '$2y$10$MmWRU67BzS8uoACsj0GDGeRgLzHsXKMd4aoh.SdMUVkMzSiotTGTG', '', 8, 'SI', '2020-05-27 16:53:02', 1),
-(4, 'JORGE', 'CESAR', 'VELASQUEZ', 'RAMOS', 'jc@abracadabra.net', '$2y$10$hDJz1V7oRzIBmOgPIYIWi.c3sqRHDuNJnmoeYa0yP43TP7.D65wa2', 'USUARIO DE PRUEBA, BORRAR', 8, '', '2020-05-29 08:31:39', 1),
-(5, 'JUAN', 'CARLOS', 'VELASQUEZ', 'ROMERO', 'gifigsdr@sharklasers.com', '$2y$10$NmEIwCwdqI4uiqpDze5X1ODwGJSg.j4R0baOA7rOYy2.xFTME1hGu', 'RNTWG)U0', 8, '', '2020-05-29 08:44:38', 1),
-(6, 'GERARDO', 'ANTONIO', 'ESCOBAR', 'SALAZAR', 'gifigsdr@yasdko.com', '$2y$10$dC0eg0Dp6lH8SwKxug7BeuiG0nA3RRzZQBEtbG6zBfn5jvpjzs74u', 'V4J@*P$@', 8, '', '2020-05-29 08:52:29', 1),
-(7, 'JUAN', 'DAVID', 'FUENTES', 'OSORIO', 'david@yahoo.com', '$2y$10$Eq7GNXD3kDJRPECijLnaz.ud1UfcraWKFjdzU1a3fIVJ8OwloJKfW', 'AORP2LAI', 8, '', '2020-05-29 09:02:54', 1),
-(8, 'JORGE', 'CARLOS', 'VELASQUEZ', 'SOSA', 'jcvs@abracadabra.net', '$2y$10$Oq3x0wQ/IS9/Kc7O8t/sqO4Rwfg7oawtUCkXWGu5mMgStcQYmvjxK', 'FX%AS*OU', 8, '', '2020-05-29 10:40:09', 1),
-(9, 'MAR&#205;A', 'ANTONIO', 'RAM&#205;REZ', 'DELGADO', 'sehector@yahoo.com', '$2y$10$j5zWsPMOOGu0uLX.EAIgFOKS7ATrZqdDjzLI3SupZC18EhFg7nx7W', '5DKVD6BP', 8, '', '2020-05-29 10:44:58', 1),
-(10, 'JESUS', 'ANTONIO', 'CABEZA', 'TRUJILLO', 'soyungatocurioso@gmail.com', '$2y$10$jEkTkJa1ABzSjlsWsmuHpu8pv0LUYRpi8zKKHRURe.5w.WfQby.rO', '121324GGUGUYG', 8, '', '2020-06-01 15:04:44', 1);
+(4, 'JORGE', 'CESAR', 'VELASQUEZ', 'RAMOS', 'jc@abracadabra.net', '$2y$10$hDJz1V7oRzIBmOgPIYIWi.c3sqRHDuNJnmoeYa0yP43TP7.D65wa2', 'USUARIO DE PRUEBA, BORRAR', 8, 'SI', '2020-05-29 08:31:39', 1),
+(5, 'JUAN', 'CARLOS', 'VELASQUEZ', 'ROMERO', 'gifigsdr@sharklasers.com', '$2y$10$NmEIwCwdqI4uiqpDze5X1ODwGJSg.j4R0baOA7rOYy2.xFTME1hGu', 'RNTWG)U0', 8, 'SI', '2020-05-29 08:44:38', 1),
+(6, 'GERARDO', 'ANTONIO', 'ESCOBAR', 'SALAZAR', 'gifigsdr@yasdko.com', '$2y$10$dC0eg0Dp6lH8SwKxug7BeuiG0nA3RRzZQBEtbG6zBfn5jvpjzs74u', 'V4J@*P$@', 8, 'SI', '2020-05-29 08:52:29', 1),
+(7, 'JUAN', 'DAVID', 'FUENTES', 'OSORIO', 'david@yahoo.com', '$2y$10$Eq7GNXD3kDJRPECijLnaz.ud1UfcraWKFjdzU1a3fIVJ8OwloJKfW', 'AORP2LAI', 8, 'SI', '2020-05-29 09:02:54', 1),
+(8, 'JORGE', 'CARLOS', 'VELASQUEZ', 'SOSA', 'jcvs@abracadabra.net', '$2y$10$Oq3x0wQ/IS9/Kc7O8t/sqO4Rwfg7oawtUCkXWGu5mMgStcQYmvjxK', 'FX%AS*OU', 8, 'SI', '2020-05-29 10:40:09', 1),
+(9, 'MAR&#205;A', 'ANTONIO', 'RAM&#205;REZ', 'DELGADO', 'sehector@yahoo.com', '$2y$10$j5zWsPMOOGu0uLX.EAIgFOKS7ATrZqdDjzLI3SupZC18EhFg7nx7W', '5DKVD6BP', 8, 'SI', '2020-05-29 10:44:58', 1),
+(10, 'JESUS', 'ANTONIO', 'CABEZA', 'TRUJILLO', 'soyungatocurioso@gmail.com', '$2y$10$jEkTkJa1ABzSjlsWsmuHpu8pv0LUYRpi8zKKHRURe.5w.WfQby.rO', '121324GGUGUYG', 8, 'SI', '2020-06-01 15:04:44', 1),
+(11, 'ESTEBAN', 'JOSE', 'LAZO', 'SALAZAR', 'coordinador1@gmail.com', '$2y$10$Uo8eXQtTtRLs3T6UNdOR5OMU1MHxCVK36Q3xAeUSOOSp8m4Ggi7EC', 'COORDINADOR 1 - @QC*WV%7', 6, 'SI', '2020-06-15 09:27:42', 1),
+(12, 'PEDRO', 'UN', 'PICAPIEDRA', '', 'pedro@yahoo.com', '$2y$10$7Y0S3dG5jyoM/abaS.7I6uydkvPm0RqjpDww20mxaLB1VMbzXitT2', '34GD5KFD', 6, 'SI', '2020-06-15 09:33:08', 1),
+(13, 'ROSA', 'MARIA', 'FUENTES', 'HEREDIA', 'rosamaria@hotmail.com', '$2y$10$0K7uWWBA8a6vH/Q7/q3e0.Zzcs6Fks6eYLnUAsh96jZ5AFDFbm8x2', 'ACUDIENTE 1 - VKVJ9Z@G', 4, 'SI', '2020-06-15 09:37:20', 1);
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `acudientes`
---
-ALTER TABLE `acudientes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `coordinadores`
---
-ALTER TABLE `coordinadores`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `estudiantes`
@@ -296,6 +265,12 @@ ALTER TABLE `grupos`
 -- Indices de la tabla `ofertas_educativas`
 --
 ALTER TABLE `ofertas_educativas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `personal`
+--
+ALTER TABLE `personal`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -328,18 +303,6 @@ ALTER TABLE `usuarios`
 --
 
 --
--- AUTO_INCREMENT de la tabla `acudientes`
---
-ALTER TABLE `acudientes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de la tabla `coordinadores`
---
-ALTER TABLE `coordinadores`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
@@ -356,6 +319,12 @@ ALTER TABLE `grupos`
 --
 ALTER TABLE `ofertas_educativas`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `personal`
+--
+ALTER TABLE `personal`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `programas_academicos`
@@ -379,7 +348,7 @@ ALTER TABLE `tipos_identificaciones`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -20,11 +20,11 @@ $row_estudiante = $resultado_estudiante->fetch_assoc();
 
 <!-- Selector de Fechas -->
 <div class="form-group row">
-<?php
+    <?php
 // Necesitamos la fecha en formato dd/mm/aaaa
-$partes = explode("-", $row_estudiante['fecha_nacimiento']);
-$fecha_nacimiento = str_pad($partes[2], 2, "0", STR_PAD_LEFT) . "/" . str_pad($partes[1], 2, "0", STR_PAD_LEFT) . "/" .  $partes[0];
-?>
+    $partes = explode("-", $row_estudiante['fecha_nacimiento']);
+    $fecha_nacimiento = str_pad($partes[2], 2, "0", STR_PAD_LEFT) . "/" . str_pad($partes[1], 2, "0", STR_PAD_LEFT) . "/" . $partes[0];
+    ?>
     <label for="fecha_nacimiento" class="col-sm-3 col-form-label">Fecha de Nacimiento</label>
     <div class="col-sm-3">
         <div class="input-group date">
@@ -128,11 +128,11 @@ $fecha_nacimiento = str_pad($partes[2], 2, "0", STR_PAD_LEFT) . "/" . str_pad($p
     <div class="col-sm-3">    
         <select class="form-control" id="acudiente" name="acudiente">
             <?php
-            $query_acudiente = "SELECT * FROM acudientes WHERE 1";
-            $resultado_acudiente = $mysqli->query($query_acudiente);
-            while ($row_acudiente = $resultado_acudiente->fetch_assoc()) {
+            $query = "SELECT id, CONCAT_WS(' ', nombre1, nombre2, apellido1, apellido2) as nombre_acudiente FROM usuarios WHERE rol = '4' AND activo = 'SI'";
+            $resultado = $mysqli->query($query);
+            while ($row = $resultado->fetch_assoc()) {
                 ?>
-                <option value="<?php echo $row_acudiente['id']; ?>"><?php echo ucfirst($row_acudiente['nombre_acudiente']); ?></option>
+                <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre_acudiente']; ?></option>
                 <?php
             }
             ?>
@@ -143,11 +143,11 @@ $fecha_nacimiento = str_pad($partes[2], 2, "0", STR_PAD_LEFT) . "/" . str_pad($p
     <div class="col-sm-3">    
         <select class="form-control" id="coordinador" name="coordinador">
             <?php
-            $query_coordinador = "SELECT * FROM coordinadores WHERE 1";
-            $resultado_coordinador = $mysqli->query($query_coordinador);
-            while ($row_coordinador = $resultado_coordinador->fetch_assoc()) {
+            $query = "SELECT id, CONCAT_WS(' ', nombre1, nombre2, apellido1, apellido2) as nombre_coordinador FROM usuarios WHERE rol = '6' AND activo = 'SI'";
+            $resultado = $mysqli->query($query);
+            while ($row = $resultado->fetch_assoc()) {
                 ?>
-                <option value="<?php echo $row_coordinador['id']; ?>"><?php echo ucfirst($row_coordinador['nombre_coordinador']); ?></option>
+                <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre_coordinador']; ?></option>
                 <?php
             }
             ?>

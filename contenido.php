@@ -1,15 +1,13 @@
-<?php
+<?php    
+include 'contenido/contenido_academico.php';
+include 'contenido/contenido_personal.php';
 
 switch ($pagina) {
     case 'dashboard':
-        include "dashboard/dashboard.php";
+        include 'dashboard/dashboard.php';
         break;
-    
-    // Menu academico
-    case 'agregar_estudiante':
-        include 'estudiantes/agregar_estudiante.php';
-        break;
-    
+
+
     // Manejo de Usuarios
     case 'listado_usuarios':
         include 'usuarios/listado_usuarios.php';
@@ -21,14 +19,14 @@ switch ($pagina) {
         include 'usuarios/editar_usuario.php';
         break;
     
+    // Menu Configuración
+    case 'año_academico':
+        include 'configuracion/ano_academico';
+        break;
+    
     // Cerrar sesión
     case 'salir':
         include 'salir.php';
-        break;
-    
-    // No se especificó página
-    default:
-        include "dashboard/dashboard.php";
         break;
 }
 

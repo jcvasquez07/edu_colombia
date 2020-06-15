@@ -21,9 +21,10 @@
             -->
 
 
-            <?php            
+            <?php
             include 'menus/menu_dashboard.php';
             include 'menus/menu_academico.php';
+            include 'menus/menu_personal.php';
             include 'menus/menu_asistencia.php';
             include 'menus/menu_examen.php';
             include 'menus/menu_calificacion.php';

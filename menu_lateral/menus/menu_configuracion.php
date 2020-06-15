@@ -6,7 +6,7 @@
     </a>
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="main.php?pagina=año_academico" class="nav-link">
                 <i class="fa fa-cog nav-icon"></i>
                 <p>Año académico</p>
             </a>

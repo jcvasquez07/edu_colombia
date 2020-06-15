@@ -9,6 +9,7 @@ if (isset($_POST['guardar'])) {
     $apellido2 = arreglar_texto(filter_input(INPUT_POST, 'apellido2'));
     $email = strtolower(arreglar_texto(filter_input(INPUT_POST, 'email')));
     $clave_texto = filter_input(INPUT_POST, 'clave_texto');
+    $activo = filter_input(INPUT_POST, 'activo');
     $observaciones = arreglar_texto(filter_input(INPUT_POST, 'observaciones'));
 
     // Esto se inserta en la tabla de estudiantes
@@ -141,7 +142,7 @@ if (isset($_POST['guardar'])) {
         </div>
         <?php
     }
-} 
+}
 ?>
 
 <!-- Titulo de la página -->
@@ -297,31 +298,34 @@ if (isset($_POST['guardar'])) {
 
                 <div class="form-group row">
                     <label for="acudiente" class="col-sm-3 col-form-label">Acudiente</label>
-                    <div class="col-sm-3">    
+                    <div class="col-sm-5">    
                         <select class="form-control" id="acudiente" name="acudiente">
                             <option value=""> -- Seleccione -- </option>
                             <?php
-                            $query = "SELECT * FROM acudientes WHERE 1";
+                            $query = "SELECT id, CONCAT_WS(' ', nombre1, nombre2, apellido1, apellido2) as nombre_acudiente FROM usuarios WHERE rol = '4' AND activo = 'SI'";
                             $resultado = $mysqli->query($query);
                             while ($row = $resultado->fetch_assoc()) {
                                 ?>
-                                <option value="<?php echo $row['id']; ?>"><?php echo ucfirst($row['nombre_acudiente']); ?></option>
+                                <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre_acudiente']; ?></option>
                                 <?php
                             }
                             ?>
                         </select>
                     </div>
+                </div>
 
-                    <label for="coordinador" class="col-sm-2 offset-1 col-form-label">Coordinador</label>
-                    <div class="col-sm-3">    
+                <div class="form-group row">
+
+                    <label for="coordinador" class="col-sm-3 col-form-label">Coordinador</label>
+                    <div class="col-sm-5">    
                         <select class="form-control" id="coordinador" name="coordinador">
-                            <option value=""> -- Seleccione -- </option>
+                            <option value=""> -- Seleccione -- </option>                            
                             <?php
-                            $query = "SELECT * FROM coordinadores WHERE 1";
+                            $query = "SELECT id, CONCAT_WS(' ', nombre1, nombre2, apellido1, apellido2) as nombre_coordinador FROM usuarios WHERE rol = '6' AND activo = 'SI'";
                             $resultado = $mysqli->query($query);
                             while ($row = $resultado->fetch_assoc()) {
                                 ?>
-                                <option value="<?php echo $row['id']; ?>"><?php echo ucfirst($row['nombre_coordinador']); ?></option>
+                                <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre_coordinador']; ?></option>
                                 <?php
                             }
                             ?>
@@ -446,6 +450,13 @@ if (isset($_POST['guardar'])) {
                             <option value="reprobado"> Reprobado </option>
                             <option value="promovido"> Promovido </option>
                             <option value="graduado"> Graduado y Certificado </option>
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">    
+                        <select class="form-control" id="activo" name="activo" required>
+                            <option value="SI" selected> Activo </option>
+                            <option value="NO"> Inactivo </option>
                             ?>
                         </select>
                     </div>

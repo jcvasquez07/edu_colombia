@@ -12,6 +12,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="main.php?pagina=listado_estudiantes" class="nav-link">
+                <i class="fas fa-users"></i>
+                <p>Listado de Estudiantes</p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="fa fa-sitemap nav-icon"></i>
                 <p>Oferta educativa</p>
@@ -33,7 +39,7 @@
 
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="main.php?pagina=listado_materias" class="nav-link">
                 <i class="fa fa-book-open nav-icon"></i>
                 <p>Materias</p>
             </a>
