@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 if (isset($_POST['guardar'])) {
     // Esto se inserta en la tabla de usuarios
@@ -471,11 +470,7 @@ if (isset($_POST['guardar'])) {
 
                 <div class="form-group row">
                     <div class="col-sm-10">
-                        <button type="submit" name="guardar" class="btn btn-success">
-                            <span class="btn-label">
-                                <i class="fas fa-save"></i>
-                            </span>Agregar Estudiante
-                        </button>
+                        <button type="submit" name="guardar" class="btn btn-success"> Agregar Estudiante </button>
                     </div>
                 </div>
             </div>  

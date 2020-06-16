@@ -18,9 +18,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="main.php?pagina=listado_ofertas" class="nav-link">
                 <i class="fa fa-sitemap nav-icon"></i>
-                <p>Oferta educativa</p>
+                <p>Ofertas educativas</p>
             </a>
         </li>
         <li class="nav-item">
@@ -31,7 +31,7 @@
         </li>
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="main.php?pagina=listado_grupos" class="nav-link">
                 <i class="fas fa-cubes"></i>&nbsp;&nbsp;
                 <p>Grupos</p>
             </a>

@@ -228,18 +228,10 @@ $row = $resultado->fetch_assoc();
 
                 <div class="form-group row">
                     <div class="col-sm-5 offset-3">
-                        <button type="submit" name="guardar" class="btn btn-success" >
-                            <span class="btn-label">
-                                <i class="fas fa-save"></i>
-                            </span>&nbsp; Guardar
-                        </button>
+                        <button type="submit" name="guardar" class="btn btn-success" > Guardar </button>
                     </div>
                     <div class="col-sm-2">
-                        <button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modalResetClave">
-                            <span class="btn-label">
-                                <i class="fas fa-key"></i>
-                            </span>&nbsp; Resetear Clave
-                        </button>
+                        <button type="button" class="btn btn-warning pull-right" data-toggle="modal" data-target="#modalResetClave"> Resetear Clave </button>
                     </div>
                 </div>
                 
@@ -249,11 +241,7 @@ $row = $resultado->fetch_assoc();
                     if ($_SESSION['rol'] == 1) {
                         ?>
                         <div class="col-sm-2">
-                            <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target="#modalBorrar">
-                                <span class="btn-label">
-                                    <i class="fas fa-trash"></i>
-                                </span>&nbsp; Borrar
-                            </button>
+                            <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target="#modalBorrar"> Borrar </button>
                         </div>
                         <?php
                     }

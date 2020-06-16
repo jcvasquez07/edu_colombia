@@ -114,11 +114,7 @@ if (isset($_POST['guardar'])) {
 
                 <div class="form-group row">
                     <div class="col-sm-10">
-                        <button type="submit" name="guardar" class="btn btn-success">
-                            <span class="btn-label">
-                                <i class="fas fa-save"></i>
-                            </span>Guardar
-                        </button>
+                        <button type="submit" name="guardar" class="btn btn-success"> Guardar </button>
                     </div>
                 </div>
             </form>

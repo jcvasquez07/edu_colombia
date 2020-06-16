@@ -167,11 +167,7 @@ switch ($tipo) {
 
                 <div class="form-group row">
                     <div class="col-sm-10">
-                        <button type="submit" name="guardar" class="btn btn-success">
-                            <span class="btn-label">
-                                <i class="fas fa-save"></i>
-                            </span>Agregar 
-                        </button>
+                        <button type="submit" name="guardar" class="btn btn-success"> Agregar </button>
                     </div>
                 </div>
             </div> 
