@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <table class="table table-hover">
+    <table class="table table-hover" id="dt_listado">
         <thead class="thead-light">
             <tr>
                 <th scope="col">#</th>

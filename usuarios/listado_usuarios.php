@@ -44,14 +44,14 @@ switch ($tipo) {
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid p-5">
     <div class="row">
         <div class="col-10">
             <a href="main.php?pagina=<?php echo $pagina_agregar; ?>" class="btn btn-success mb-2" role="button" aria-pressed="true"><?php echo $msg_agregar; ?></a></p>
         </div>
     </div>
 
-    <table class="table table-hover">
+    <table class="table table-hover" id="dt_listado">
         <thead class="thead-light">
             <tr>
                 <th scope="col">#</th>

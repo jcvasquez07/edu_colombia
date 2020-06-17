@@ -20,3 +20,14 @@ $('.datepicker').datepicker({
     todayHighlight: true
 });
 
+// Datatables
+$(document).ready(function () {
+    $('#dt_listado').DataTable({
+        "columnDefs": [
+            {"searchable": false, "targets": 0}
+        ],
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
+        }
+    });
+});

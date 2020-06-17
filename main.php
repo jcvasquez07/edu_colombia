@@ -54,14 +54,16 @@ if (isset($_GET['pagina'])) {
         <!-- Datepickers (https://bootstrap-datepicker.readthedocs.io/en/latest/index.html#) -->        
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" />
         <!-- Jasny -->
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css">     
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/css/jasny-bootstrap.min.css">  
+        <!-- Datatables -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
         <!-- estilos locales -->
         <link href="./dist/css/estilos.css" rel="stylesheet" />
-        
+
         <!-- jQuery -->
         <script src="plugins/jquery/jquery.min.js"></script>
     </head>
-    
+
     <body class="hold-transition sidebar-mini layout-fixed">
         <div class="wrapper">
 
@@ -92,7 +94,7 @@ if (isset($_GET['pagina'])) {
 
 
                 <!-- Main content -->
-                <section class="content">
+                <section class="content mx-lg-5">
                     <?php
                     include 'contenido.php';
                     ?>
@@ -157,6 +159,8 @@ if (isset($_GET['pagina'])) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.es.min.js"></script>
         <!-- jasny -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/js/jasny-bootstrap.min.js"></script>
+        <!-- Datatables -->        
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
         <!-- Scripts Locales -->
         <script src="dist/js/scripts_locales.js"></script>
 
