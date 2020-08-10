@@ -18,9 +18,9 @@ switch ($tipo) {
         $pagina_agregar = "agregar_docente";
         $pagina_editar = "editar_personal";
         break;
-    case 'coordinador':
-        $msg_titulo = "Listado de Coordinadores";
-        $msg_agregar = "Agregar Nuevo Coordinador";
+    case 'asesor educativo':
+        $msg_titulo = "Listado de Asesores Educativos";
+        $msg_agregar = "Agregar Nuevo Asesor Educativo";
         $pagina_agregar = "agregar_coordinador";
         $pagina_editar = "editar_personal";
         break;
@@ -57,24 +57,28 @@ switch ($tipo) {
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>      
                 <th scope="col">Email</th>
-                <th scope="col">Rol</th>
                 <th scope="col">Observaciones</th>
+                <th>
+                    <?php
+                    echo ($pagina == 'listado_estudiantes') ? '' : 'Rol';
+                    ?>
+                </th>
             </tr>
         </thead>
         <tbody data-link="row" class="rowlink">
             <?php
             $condicion = "usuarios.rol = roles.id";
             switch ($tipo) {
-                case  'estudiante':
+                case 'estudiante':
                     $condicion .= " AND roles.id = 8";
                     break;
-                case  'acudiente':
+                case 'acudiente':
                     $condicion .= " AND roles.id = 4";
                     break;
-                case  'docente':
+                case 'docente':
                     $condicion .= " AND roles.id = 5";
                     break;
-                case  'coordinador':
+                case 'coordinador':
                     $condicion .= " AND roles.id = 6";
                     break;
             }
@@ -88,8 +92,23 @@ switch ($tipo) {
                     <td scope="row"><?php echo ++$i; ?></td>
                     <td><a href="main.php?pagina=<?php echo $pagina_editar; ?>&id_usuario=<?php echo $row['id']; ?>"><?php echo $nombre; ?></a></td>
                     <td><?php echo $row['email']; ?></td>
-                    <td><?php echo $row['rol']; ?></td>
                     <td><?php echo $row['observaciones']; ?></td>
+                    <td class="rowlink-skip">
+                        <?php
+                        if ($pagina == 'listado_estudiantes') {
+                            ?>
+                            <!--<a href="diplomas/diploma_pdf.php" target="_blank">-->
+                            <a href="plantilla_pdf.pdf" target="_blank">
+                                <span class="text-danger">
+                                    <i class="fas fa-file-pdf"></i>
+                                </span>
+                            </a>
+                            <?php
+                        } else {
+                            echo $row['rol'];
+                        }
+                        ?>
+                    </td>
                 </tr>
                 <?php
             }
@@ -97,3 +116,4 @@ switch ($tipo) {
         </tbody>
     </table>
 </div>
+

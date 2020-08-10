@@ -50,7 +50,7 @@
             <li class="nav-item">
                 <a href="#" class="nav-link btn-sm">
                     <i class="fas fa-book-reader"></i>&nbsp;&nbsp;
-                    <p>Coordinador</p>
+                    <p>Asesor Educativo</p>
                 </a>
             </li>
 
@@ -509,3 +509,4 @@
     </nav>
     <!-- /.sidebar-menu -->
 </div>
+

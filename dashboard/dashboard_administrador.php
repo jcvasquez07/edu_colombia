@@ -1,3 +1,12 @@
+<?php
+$query = "SELECT roles.rol, COUNT(usuarios.rol) AS cantidad FROM usuarios, roles WHERE usuarios.rol = roles.id GROUP BY roles.rol";
+$resultado = $mysqli->query($query);
+$rol = array();
+while ($row = $resultado->fetch_assoc()) {
+    $rol[$row['rol']] = $row['cantidad'];
+}
+?>
+
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -11,13 +20,13 @@
 <!-- /.content-header -->
 
 <div class="container-fluid">
-    <!-- Small boxes (Stat box) -->
-    <div class="row">
+
+    <div class="row">    
+        <!-- Estudiantes -->
         <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>150</h3>
+                    <h3><?php echo ($rol['estudiante']) ? $rol['estudiante'] : '0'; ?></h3>
                     <p>Estudiantes</p>
                 </div>
                 <div class="icon">
@@ -26,13 +35,13 @@
                 <a href="#" class="small-box-footer">M&#225;s informaci&#243;n <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <!-- ./col -->
+        <!-- ./Estudiantes -->
 
+        <!-- Docentes -->
         <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>53</h3>
+                    <h3><?php echo ($rol['docente']) ? $rol['docente'] : '0'; ?></h3>
                     <p>Docentes</p>
                 </div>
                 <div class="icon">
@@ -41,14 +50,14 @@
                 <a href="#" class="small-box-footer">M&#225;s informaci&#243;n <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <!-- ./col -->
+        <!-- ./Docentes -->
 
+        <!-- Coordinadores -->
         <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3>44</h3>
-                    <p>Coordinadores</p>
+                    <h3><?php echo ($rol['coordinador']) ? $rol['coordinador'] : '0'; ?></h3>
+                    <p>Asesores Educativos</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
@@ -56,7 +65,7 @@
                 <a href="#" class="small-box-footer">M&#225;s informaci&#243;n <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <!-- ./col -->
+        <!-- ./Coordinadores -->
 
         <div class="col-lg-3 col-6">
             <!-- small box -->
@@ -471,19 +480,19 @@
                 <div class="card-footer p-0">
                     <ul class="nav flex-column">
                         <li class="nav-item m-2">
-                                Nombre de Usuario <span class="float-right">jcvasquez07</span>
+                            Nombre de Usuario <span class="float-right">jcvasquez07</span>
                             </a>
                         </li>
                         <li class="nav-item m-2">
-                                Correo Electr&#243;nico <span class="float-right">jcvasquez07@gmail.com</span>
+                            Correo Electr&#243;nico <span class="float-right">jcvasquez07@gmail.com</span>
                             </a>
                         </li>
                         <li class="nav-item m-2">
-                                Tel&#233;fono <span class="float-right">251 99 21</span>
+                            Tel&#233;fono <span class="float-right">251 99 21</span>
                             </a>
                         </li>
                         <li class="nav-item m-2">
-                                Direcci&#243;n <span class="float-right">CARRERA 50 No 52 22 LOCAL 137</span>
+                            Direcci&#243;n <span class="float-right">CARRERA 50 No 52 22 LOCAL 137</span>
                             </a>
                         </li>
                     </ul>
@@ -545,4 +554,15 @@
     </div>
     <!-- /.row (main row) -->
 </div><!-- /.container-fluid -->
+
+
+
+
+
+
+
+
+
+
+
 

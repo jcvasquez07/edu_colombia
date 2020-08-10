@@ -2,11 +2,11 @@
 
 switch ($pagina) {
     case 'agregar_coordinador':
-        $tipo = 'coordinador';
+        $tipo = 'asesor educativo';
         include 'personal/agregar_personal.php';
         break;
     case 'listado_coordinadores':
-        $tipo = 'coordinador';
+        $tipo = 'asesor educativo';
         include 'usuarios/listado_usuarios.php';
         break;
     case 'agregar_docente':

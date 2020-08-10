@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 15-06-2020 a las 11:46:58
+-- Tiempo de generación: 07-07-2020 a las 09:13:02
 -- Versión del servidor: 10.3.23-MariaDB-log-cll-lve
 -- Versión de PHP: 7.3.6
 
@@ -82,11 +82,31 @@ CREATE TABLE `grupos` (
 --
 
 INSERT INTO `grupos` (`id`, `nombre_grupo`) VALUES
-(1, 'Grupo 1'),
+(1, 'TEOR&#205;A MUSICAL'),
 (2, 'Grupo 2'),
 (3, 'Grupo 3'),
-(4, 'Grupo 4'),
-(5, 'Grupo 5');
+(4, 'Grupo 4');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `materias`
+--
+
+CREATE TABLE `materias` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `codigo_materia` varchar(50) NOT NULL,
+  `nombre_materia` varchar(500) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `materias`
+--
+
+INSERT INTO `materias` (`id`, `codigo_materia`, `nombre_materia`) VALUES
+(1, 'BP0003', 'LECTURA ELEMENTAL'),
+(2, 'BP0004', 'ARITMETICA'),
+(3, 'MA0001', '12312231');
 
 -- --------------------------------------------------------
 
@@ -96,6 +116,8 @@ INSERT INTO `grupos` (`id`, `nombre_grupo`) VALUES
 
 CREATE TABLE `ofertas_educativas` (
   `id` int(10) UNSIGNED NOT NULL,
+  `codigo_oferta` varchar(5) NOT NULL,
+  `siguiente` int(4) NOT NULL,
   `nombre_oferta` varchar(250) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -103,13 +125,13 @@ CREATE TABLE `ofertas_educativas` (
 -- Volcado de datos para la tabla `ofertas_educativas`
 --
 
-INSERT INTO `ofertas_educativas` (`id`, `nombre_oferta`) VALUES
-(1, 'Educaci&#243;n B&#225;sica Primaria'),
-(2, 'Educaci&#243;n B&#225;sica Secundaria'),
-(3, 'Educaci&#243;n Media Acad&#233;mica'),
-(4, 'Educaci&#243;n B&#225;sica Acad&#233;mica'),
-(5, 'Educaci&#243;n para el Trabajo y el Desarrollo Humano'),
-(6, 'Formaci&#243;n Complementaria');
+INSERT INTO `ofertas_educativas` (`id`, `codigo_oferta`, `siguiente`, `nombre_oferta`) VALUES
+(1, 'BP', 5, 'Educaci&#243;n B&#225;sica Primaria'),
+(2, 'BS', 2, 'Educaci&#243;n B&#225;sica Secundaria'),
+(3, 'MA', 2, 'Educaci&#243;n Media Acad&#233;mica'),
+(4, 'BA', 1, 'Educaci&#243;n B&#225;sica Acad&#233;mica'),
+(5, 'ET', 1, 'Educaci&#243;n para el Trabajo y el Desarrollo Humano'),
+(6, 'FC', 1, 'Formaci&#243;n Complementaria');
 
 -- --------------------------------------------------------
 
@@ -262,6 +284,12 @@ ALTER TABLE `grupos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `materias`
+--
+ALTER TABLE `materias`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `ofertas_educativas`
 --
 ALTER TABLE `ofertas_educativas`
@@ -315,10 +343,16 @@ ALTER TABLE `grupos`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT de la tabla `materias`
+--
+ALTER TABLE `materias`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `ofertas_educativas`
 --
 ALTER TABLE `ofertas_educativas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `personal`

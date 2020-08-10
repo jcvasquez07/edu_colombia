@@ -12,15 +12,39 @@
             </a>
         </li>                   
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="main.php?pagina=semestre" class="nav-link">
                 <i class="fa fa-cog nav-icon"></i>
-                <p>De correo electrónico</p>
+                <p>Semestre</p>
+            </a>
+        </li>                   
+        <li class="nav-item">
+            <a href="main.php?pagina=intervalo_tiempo" class="nav-link">
+                <i class="fa fa-cog nav-icon"></i>
+                <p>Intervalo de Tiempo</p>
+            </a>
+        </li>                   
+        <li class="nav-item">
+            <a href="main.php?pagina=jornada" class="nav-link">
+                <i class="fa fa-cog nav-icon"></i>
+                <p>Jornada</p>
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="main.php?pagina=modalidad" class="nav-link">
                 <i class="fa fa-cog nav-icon"></i>
-                <p>De mensajes de texto</p>
+                <p>Modalidad</p>
+            </a>
+        </li>                                  
+        <li class="nav-item">
+            <a href="main.php?pagina=ubicacion" class="nav-link">
+                <i class="fa fa-cog nav-icon"></i>
+                <p>Ubicaci&#243;n</p>
+            </a>
+        </li>                                  
+        <li class="nav-item">
+            <a href="main.php?pagina=convenio" class="nav-link">
+                <i class="fa fa-cog nav-icon"></i>
+                <p>Convenio</p>
             </a>
         </li>                                  
     </ul>

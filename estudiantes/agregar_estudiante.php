@@ -315,7 +315,7 @@ if (isset($_POST['guardar'])) {
 
                 <div class="form-group row">
 
-                    <label for="coordinador" class="col-sm-3 col-form-label">Coordinador</label>
+                    <label for="coordinador" class="col-sm-3 col-form-label">Asesor Educativo</label>
                     <div class="col-sm-5">    
                         <select class="form-control" id="coordinador" name="coordinador">
                             <option value=""> -- Seleccione -- </option>                            
@@ -493,4 +493,5 @@ if (isset($_POST['guardar'])) {
         </div>
     </form>
 </div>
+
 

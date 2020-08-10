@@ -139,7 +139,7 @@ $row_estudiante = $resultado_estudiante->fetch_assoc();
         </select>
     </div>
 
-    <label for="coordinador" class="col-sm-2 offset-1 col-form-label">Coordinador</label>
+    <label for="coordinador" class="col-sm-2 offset-1 col-form-label">Asesor Educativo</label>
     <div class="col-sm-3">    
         <select class="form-control" id="coordinador" name="coordinador">
             <?php

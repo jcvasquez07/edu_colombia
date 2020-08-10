@@ -1,10 +1,12 @@
 <?php
 if (isset($_POST['guardar'])) {
+    $año = filter_input(INPUT_POST, 'año');
+    
     $error = "";
-    $query = '';
+    $query = "INSERT INTO anho_academico SET anho = '$año'";
     $resultado = $mysqli->query($query);
-    if (!$mysqli->error) {
-        $error = "No se pudo insertar en la tabla xxxxx. El servidor dijo: " . htmlspecialchars($mysqli->error);
+    if ($mysqli->error) {
+        $error = "No se pudo insertar en la tabla anho_academico. El servidor dijo: " . htmlspecialchars($mysqli->error);
     }
     
     // Notificamos
@@ -38,7 +40,7 @@ if (isset($_POST['guardar'])) {
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Titulo</h1>
+                <h1 class="m-0 text-dark">A&#241;o Acad&#233;mico</h1>
                 <hr class="separador" />
             </div>
         </div>
@@ -53,27 +55,9 @@ if (isset($_POST['guardar'])) {
             <div class="col-md-6 mx-4">
 
                 <div class="form-group row">
-                    <label for="oferta_educativa" class="col-sm-3 col-form-label">Oferta Educativa</label>
-                    <div class="col-sm-6">    
-                        <select class="form-control" id="oferta_educativa" name="oferta_educativa" required>
-                            <option value=""> -- Seleccione -- </option>
-                            <?php
-                            $query = "SELECT * FROM ofertas_educativas WHERE 1";
-                            $resultado = $mysqli->query($query);
-                            while ($row = $resultado->fetch_assoc()) {
-                                ?>
-                                <option value="<?php echo $row['id']; ?>"><?php echo ucfirst($row['nombre_oferta']); ?></option>
-                                <?php
-                            }
-                            ?>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="materia" class="col-sm-3 col-form-label">Nombre de Materia</label>
-                    <div class="col-sm-9">
-                        <input type="text" name="materia" class="form-control" id="materia" placeholder="Nombre de Materia" required>
+                    <label for="año" class="col-sm-3 col-form-label">A&#241;o acad&#233;mico</label>
+                    <div class="col-sm-3">
+                        <input type="text" name="año" class="form-control" id="año" placeholder="A&#241;o acad&#233;mico" required>
                     </div>
                 </div> 
 
@@ -87,6 +71,5 @@ if (isset($_POST['guardar'])) {
         </div>
     </form>
 </div>
-
 
 

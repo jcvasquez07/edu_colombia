@@ -75,12 +75,12 @@ function calcular_edad($fecha) {
 // Calcula la edad en base a una fecha obtenida de la base de datos
 // La fecha debe estar en formato AAAA-MM-DD
     $piezas = explode("-", $fecha);
-    $edad = (int)date('Y') - (int)$piezas[0];
-    if ((int)date('m') < (int)$piezas[1]) {
+    $edad = (int) date('Y') - (int) $piezas[0];
+    if ((int) date('m') < (int) $piezas[1]) {
         $edad--;
     }
     if (date('m') == $piezas[1]) {
-        if ((int)date('d') < (int)$piezas[2]) {
+        if ((int) date('d') < (int) $piezas[2]) {
             $edad--;
         }
     }
@@ -108,11 +108,16 @@ function arreglar_fecha($fecha, bool $leible = FALSE) {
     return $fecha_arreglada;
 }
 
-function arreglar_texto($cadena, $todo = TRUE) {
+function arreglar_texto($cadena, $mayusculas = TRUE) {
 // Arregla una cadena de texto para su almacenamiento en la base de datos
-// De forma predeterminada, se convierte todo a mayusculas
-// para almacenarlo en la base de datos
-    if ($todo) {
+    
+    // primero lidiamos con las comillas (sencillas y dobles) y NULL
+    $texto = htmlspecialchars($cadena);
+    
+    // ¿Capitalizamos o respetamos la capitalización original?
+    if ($mayusculas) {
+        // Capitalizamos
+        $texto = strtoupper(trim($cadena));
         $patron = array(
             '/á/' => '&#193;', '/Á/' => '&#193;',
             '/é/' => '&#201;', '/É/' => '&#201;',
@@ -121,11 +126,9 @@ function arreglar_texto($cadena, $todo = TRUE) {
             '/ú/' => '&#218;', '/Ú/' => '&#218;',
             '/ñ/' => '&#209;', '/Ñ/' => '&#209;'
         );
-        $texto = strtoupper(trim($cadena));
-        $texto = preg_replace(array_keys($patron), array_values($patron), $texto);
-        $texto = strtoupper(trim($texto));
     } else {
-    // Para mantener el formato de frases en las noticias
+        // Respetamos la capitalización original
+        $texto = trim($cadena);
         $patron = array(
             '/á/' => '&#225;', '/Á/' => '&#193;',
             '/é/' => '&#233;', '/É/' => '&#201;',
@@ -134,10 +137,9 @@ function arreglar_texto($cadena, $todo = TRUE) {
             '/ú/' => '&#250;', '/Ú/' => '&#218;',
             '/ñ/' => '&#241;', '/Ñ/' => '&#209;'
         );
-        $texto = trim($cadena);
-        $texto = preg_replace(array_keys($patron), array_values($patron), $texto);
-        $texto = trim($texto);
     }
+    // Reemplazamos acentos y eñes
+    $texto = preg_replace(array_keys($patron), array_values($patron), $texto);
     return $texto;
 }
 
@@ -285,3 +287,4 @@ function num2mes($var) {
     }
     return $mes;
 }
+

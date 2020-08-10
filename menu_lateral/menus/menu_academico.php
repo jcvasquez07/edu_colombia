@@ -26,7 +26,7 @@
         <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="fa fa-pen nav-icon"></i>
-                <p>Programa académico</p>
+                <p>Nivel académico</p>
             </a>
         </li>
 
@@ -41,7 +41,7 @@
         <li class="nav-item">
             <a href="main.php?pagina=listado_materias" class="nav-link">
                 <i class="fa fa-book-open nav-icon"></i>
-                <p>Materias</p>
+                <p>Asignaturas</p>
             </a>
         </li>
 
@@ -68,4 +68,5 @@
 
     </ul>
 </li>
+
 

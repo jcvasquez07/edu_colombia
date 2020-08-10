@@ -84,7 +84,7 @@ switch ($tipo) {
     case 'docente':
         $rol = 5;
         break;
-    case 'coordinador':
+    case 'asesor educativo':
         $rol = 6;
         break;
 }
@@ -95,7 +95,7 @@ switch ($tipo) {
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Agregar Nuevo <?php echo ucfirst($tipo); ?></h1>
+                <h1 class="m-0 text-dark">Agregar Nuevo <?php echo ucwords($tipo); ?></h1>
                 <hr class="separador" />
             </div>
         </div>
