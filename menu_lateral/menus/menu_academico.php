@@ -23,12 +23,6 @@
                 <p>Ofertas educativas</p>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa fa-pen nav-icon"></i>
-                <p>Nivel académico</p>
-            </a>
-        </li>
 
         <li class="nav-item">
             <a href="main.php?pagina=listado_grupos" class="nav-link">
@@ -37,13 +31,20 @@
             </a>
         </li>
 
-
         <li class="nav-item">
             <a href="main.php?pagina=listado_materias" class="nav-link">
                 <i class="fa fa-book-open nav-icon"></i>
                 <p>Asignaturas</p>
             </a>
         </li>
+        
+        <li class="nav-item">
+            <a href="main.php?pagina=listado_niveles_academicos" class="nav-link">
+                <i class="fa fa-pen nav-icon"></i>
+                <p>Nivel académico</p>
+            </a>
+        </li>>
+<!--
 
         <li class="nav-item">
             <a href="#" class="nav-link">
@@ -65,8 +66,13 @@
                 <p>Plan de estudio</p>
             </a>
         </li>
-
+-->
     </ul>
 </li>
+
+
+
+
+
 
 

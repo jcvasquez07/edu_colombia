@@ -10,13 +10,14 @@ switch ($pagina) {
         break;
     
     case 'agregar_materia':
+    case 'editar_materia':
         include 'materias/agregar_materia.php';
         break;
     case 'listado_materias':
         include 'materias/listado_materias.php';
         break;
-    case 'editar_materia':
-        include 'materias/editar_materia.php';
+    case 'docentes_materia':
+        include 'materias/docentes_materia.php';
         break;
     
     case 'agregar_grupo':
@@ -37,6 +38,13 @@ switch ($pagina) {
         break;
     case 'editar_oferta':
         include 'ofertas_educativas/editar_oferta.php';
+        break;    
+    
+    case 'listado_niveles_academicos':
+        include 'niveles_academicos/listado_niveles_academicos.php';
+        break;
+        case 'agregar_nivel_academico':
+        case 'editar_nivel_academico':
+        include 'niveles_academicos/agregar_nivel_academico.php';
         break;
 }
-
