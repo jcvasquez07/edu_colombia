@@ -6,28 +6,39 @@
     </a>
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa fa-spell-check nav-icon"></i>
-                <p>Calificar Examen</p>
+            <a href="main.php?pagina=asignar_tarea" class="nav-link">
+                <i class="fa fa-spell-check"></i>
+                <p>Asignar Tarea</p>
             </a>
         </li>
+
         <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa fa-check-double nav-icon"></i>
-                <p>Calificar Tareas</p>
+            <a href="main.php?pagina=calificar_tarea" class="nav-link">
+                <i class="fa fa-check-double mx-2"></i>
+                <p>Calificar tarea</p>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa fa-list-ol nav-icon"></i>
-                <p>Distribución de calificación</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fa fa-graduation-cap nav-icon"></i>
-                <p>Promoción</p>
-            </a>
-        </li>                    
+
+        <!--        <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa fa-list-ol"></i>
+                        <p>Distribución de calificación</p>
+                    </a>
+                </li>
+        
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa fa-spell-check"></i>
+                        <p>Calificar Examen</p>
+                    </a>
+                </li>
+        
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa fa-graduation-cap"></i>
+                        <p>Promoción</p>
+                    </a>
+                </li> -->
+
     </ul>
 </li>

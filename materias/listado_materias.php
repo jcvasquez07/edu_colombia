@@ -36,7 +36,7 @@ if (isset($_POST['borrar'])) {
                 <th>Promedio Final</th>
                 <th>Grupo</th>
                 <th>Docente</th>
-                <td></td>
+                <th></th>
             </tr>
         </thead>
         <tbody data-link="row" class="rowlink">

@@ -5,12 +5,12 @@
         </p>
     </a>
     <ul class="nav nav-treeview">
-        <li class="nav-item">
+<!--        <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="fa fa-money-bill-alt nav-icon"></i>
                 <p>Metodo de Pago</p>
             </a>
-        </li>
+        </li>-->
 
         <li class="nav-item">
             <a href="main.php?pagina=listado_usuarios" class="nav-link">
@@ -19,6 +19,7 @@
             </a>
         </li> 
         
+        <!--
         <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="fa fa-unlock-alt nav-icon"></i>
@@ -67,6 +68,7 @@
                 <i class="fa fa-cogs nav-icon"></i>
                 <p>Configuración General</p>
             </a>
-        </li>                                         
+        </li>
+        -->
     </ul>
 </li>

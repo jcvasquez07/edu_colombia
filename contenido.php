@@ -1,6 +1,8 @@
 <?php    
 include 'contenido/contenido_academico.php';
 include 'contenido/contenido_personal.php';
+include 'contenido/contenido_calificacion.php';
+include 'contenido/contenido_biblioteca.php';
 include 'contenido/contenido_tarifas.php';
 include 'contenido/contenido_configuracion.php';
 

@@ -1,14 +1,14 @@
 <?php
 
 switch ($pagina) {
-    case 'agregar_coordinador':
-        $tipo = 'asesor educativo';
-        include 'personal/agregar_personal.php';
+    case 'grupos':
+        include 'asesores_educativos/grupos.php';
         break;
-    case 'listado_coordinadores':
+    case 'listado_asesores':
         $tipo = 'asesor educativo';
-        include 'usuarios/listado_usuarios.php';
+        include 'asesores_educativos/listado_asesores.php';
         break;
+    
     case 'agregar_docente':
         $tipo = 'docente';
         include 'personal/agregar_personal.php';
@@ -17,6 +17,7 @@ switch ($pagina) {
         $tipo = 'docente';
         include 'usuarios/listado_usuarios.php';
         break;
+    
     case 'agregar_acudiente':
         $tipo = 'acudiente';
         include 'personal/agregar_personal.php';
@@ -25,6 +26,7 @@ switch ($pagina) {
         $tipo = 'acudiente';
         include 'usuarios/listado_usuarios.php';
         break;
+    
     case 'editar_personal':
         include 'personal/editar_personal.php';
         break;

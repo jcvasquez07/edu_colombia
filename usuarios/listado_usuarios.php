@@ -54,10 +54,10 @@ switch ($tipo) {
     <table class="table table-hover" id="dt_listado">
         <thead class="thead-light">
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>      
-                <th scope="col">Email</th>
-                <th scope="col">Observaciones</th>
+                <th>#</th>
+                <th>Nombre</th>      
+                <th>Email</th>
+                <th>Observaciones</th>
                 <th>
                     <?php
                     echo ($pagina == 'listado_estudiantes') ? '' : 'Rol';
@@ -78,7 +78,7 @@ switch ($tipo) {
                 case 'docente':
                     $condicion .= " AND roles.id = 5";
                     break;
-                case 'coordinador':
+                case 'asesor educativo':
                     $condicion .= " AND roles.id = 6";
                     break;
             }

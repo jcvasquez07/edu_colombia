@@ -27,8 +27,8 @@ if (isset($_POST['borrar'])) {
     <table class="table table-hover" id="dt_listado">
         <thead class="thead-light">
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre del Nivel Acad&#233;mico</th>
+                <th>#</th>
+                <th>Nombre del Nivel Acad&#233;mico</th>
                 <th>Oferta Educativa</th>
                 <th></th>
             </tr>

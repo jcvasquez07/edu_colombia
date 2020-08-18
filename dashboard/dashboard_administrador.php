@@ -3,7 +3,7 @@ $query = "SELECT roles.rol, COUNT(usuarios.rol) AS cantidad FROM usuarios, roles
 $resultado = $mysqli->query($query);
 $rol = array();
 while ($row = $resultado->fetch_assoc()) {
-    $rol[$row['rol']] = $row['cantidad'];
+    $rol[preg_replace('/ /', '_', $row['rol'])] = $row['cantidad'];
 }
 ?>
 
@@ -56,7 +56,7 @@ while ($row = $resultado->fetch_assoc()) {
         <div class="col-lg-3 col-6">
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3><?php echo ($rol['coordinador']) ? $rol['coordinador'] : '0'; ?></h3>
+                    <h3><?php echo ($rol['asesor_educativo']) ? $rol['asesor_educativo'] : '0'; ?></h3>
                     <p>Asesores Educativos</p>
                 </div>
                 <div class="icon">
@@ -71,7 +71,12 @@ while ($row = $resultado->fetch_assoc()) {
             <!-- small box -->
             <div class="small-box bg-danger">
                 <div class="inner">
-                    <h3>65</h3>
+                    <?php
+                    $query = "SELECT id FROM materias WHERE 1";
+                    $resultado = $mysqli->query($query);
+                    $cantidad_materias = $resultado->num_rows;
+                    ?>
+                    <h3><?php echo $cantidad_materias; ?></h3>
                     <p>Materias</p>
                 </div>
                 <div class="icon">

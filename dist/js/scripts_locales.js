@@ -12,6 +12,7 @@ function setSelectedIndex(s, valsearch) {
 }
 
 // Datepickers
+// HAY QUE FORMATEAR LA FECHA ANTES DE ENVIARLA A LA BD!
 $('.datepicker').datepicker({
     format: "dd/mm/yyyy",
     todayBtn: "linked",
@@ -30,4 +31,16 @@ $(document).ready(function () {
             url: '//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
         }
     });
+});
+
+$(document).ready(function () {
+// Popovers
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+
+// Tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 });

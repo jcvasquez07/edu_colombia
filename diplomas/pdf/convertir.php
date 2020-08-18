@@ -77,41 +77,111 @@ $pdf->selectFont($mainFont);
 // El pie de pagina
 $y_pie_pagina = 30;
 $font_pie_pagina = 6;
-$pdf->addText(50, $y_pie_pagina, $font_pie_pagina, getcwd());
+$pdf->addText(50, $y_pie_pagina, $font_pie_pagina, '');
 $pdf->restoreState();
 $pdf->closeObject();
 $pdf->addObject($all, 'all');
 
 // ---------------------------------------------------------
 // Logo arriba, izquierda
-$x_logo = 50;
-$y_logo = $pdf->y - 100;
-$pdf->addJpegFromFile($logo, $x_logo, $y_logo, 100, 0);
+$logo = "../dist/imagenes/logo.jpg";
+$x_logo = 20;
+$y_logo = $pdf->y - 130;
+$pdf->addJpegFromFile($logo, $x_logo, $y_logo, 150, 0);
 
 // Este encabezado debe moverse como una unidad
 // Titulo
+$titulo = "Corporación Instituto Pedagógico Ocupacional";
 $x_titulo = 170;
 $y_titulo = $pdf->y - 15;
 $pdf->addText($x_titulo, $y_titulo, 20, $titulo);
 
 // Titulo1
+$titulo1 = "INPO";
 $x_titulo1 = $x_titulo + 170;
 $y_titulo1 = $y_titulo - 25;
 $pdf->addText($x_titulo1, $y_titulo1, 20, $titulo1);
 
 // Titulo2
-$x_titulo2 = $x_titulo + 70;
+$titulo4 = "Educación para el Trabajo y el Desarrollo Humano";
+$x_titulo2 = $x_titulo + 25;
 $y_titulo2 = $y_titulo - 45;
-$pdf->addText($x_titulo2, $y_titulo2, 12, $titulo2);
+$pdf->addText($x_titulo2, $y_titulo2, 16, $titulo4);
+
+// Tamaño de texto para las siguientes tres líneas
+$tamaño_texto = 9;
+// Titulo3
+$titulo3 = "Licencia de Funcionamiento 2549 de 26 de Noviembre de 2013 de la Secretaría de Educación";
+$x_titulo3 = $x_titulo + 25;
+$y_titulo3 = $y_titulo - 65;
+$pdf->addText($x_titulo3, $y_titulo3, $tamaño_texto, $titulo3);
+
+// Titulo4
+$titulo4 = "Municipal modificada mendiante Resolución 1725 de 21 de Agosto de 2015";
+$x_titulo4 = $x_titulo + 60;
+$y_titulo4 = $y_titulo - 80;
+$pdf->addText($x_titulo4, $y_titulo4, $tamaño_texto, $titulo4);
+
+// Titulo5
+$titulo5 = "NIT 900547925-0";
+$x_titulo5 = $x_titulo + 170;
+$y_titulo5 = $y_titulo - 95;
+$pdf->addText($x_titulo5, $y_titulo5, $tamaño_texto, $titulo5);
+
+// La línea separadora
+$y_linea = $y_titulo - 130;
+$pdf->line(20, $y_linea, 590, $y_linea);
+
+// Lugar y fecha
+$ciudad_fecha = "Ciudad y Fecha: Cucutá - Norte de Santander, " . $fecha;
+$x_lugar = 20;
+$y_lugar = $y_linea - 20;
+$pdf->addText($x_lugar, $y_lugar, 12, $ciudad_fecha);
 
 //-----------------------------------------------------------
-// Contenido del documento
+
 $data = file($temp_file);
 
-//$pdf->ezNewPage();
-// $pdf->ezStartPageNumbers(500, 28, 10, '', '', 1);
-// las variables $y_pie_pagina y $font_pie_pagina se definen en la sección 'Pie de Página' más arriba
-$pdf->ezStartPageNumbers(500, $y_pie_pagina, $font_pie_pagina, '', '', 1);
+//-----------------------------------------------------------
+$y_linea = 320;
+$pdf->line(20, $y_linea, 590, $y_linea);
+
+// Total general
+$total_general = "TOTAL A PAGAR: $ 960.000";
+$x_lugar = 20;
+$y_lugar = $y_linea - 25;
+$pdf->addText($x_lugar, $y_lugar, 12, $total_general);
+
+// La línea separadora
+$y_linea = 280;
+$pdf->line(20, $y_linea, 590, $y_linea);
+
+// Las firmas
+// Esto no cambia
+$y_linea = 100;
+$y_firma = $y_linea - 15;  
+$largo_linea = 140; 
+$separador = 40;
+
+$x_linea = 50;
+$x_firma = 90;  
+$pdf->line($x_linea, $y_linea, $x_linea + $largo_linea, $y_linea);
+$firma = "Firma Director";
+$pdf->addText($x_firma, $y_firma, 10, $firma);
+
+$x_linea += $largo_linea + $separador;
+$x_firma += $largo_linea + $separador;  
+$pdf->line($x_linea, $y_linea, $x_linea + $largo_linea, $y_linea);
+$firma = "Firma Secretaria";
+$pdf->addText($x_firma, $y_firma, 10, $firma);
+
+$x_linea += $largo_linea + $separador;
+$x_firma += $largo_linea + $separador;  
+$pdf->line($x_linea, $y_linea, $x_linea + $largo_linea, $y_linea);
+$firma = "Firma Alumno";
+$pdf->addText($x_firma, $y_firma, 10, $firma);
+
+/******************************************************/
 
 $size = 10;
 $height = $pdf->getFontHeight($size);

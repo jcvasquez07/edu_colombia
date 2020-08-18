@@ -5,7 +5,7 @@
             <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            <a href="#" class="d-block">Pablo Tamara</a>
+            <a href="#" class="d-block"><?php echo  $_SESSION['nombre_usuario_logeado']; ?></a>
             <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
         </div>
     </div>
@@ -25,14 +25,14 @@
             include 'menus/menu_dashboard.php';
             include 'menus/menu_academico.php';
             include 'menus/menu_personal.php';
-            include 'menus/menu_asistencia.php';
-            include 'menus/menu_examen.php';
+//            include 'menus/menu_asistencia.php';
+//            include 'menus/menu_examen.php';
             include 'menus/menu_calificacion.php';
-            include 'menus/menu_otros.php';
+//            include 'menus/menu_otros.php';
             include 'menus/menu_biblioteca.php';
             include 'menus/menu_tarifas.php';
-            include 'menus/menu_informes.php';
-            include 'menus/menu_herramientas.php';
+//            include 'menus/menu_informes.php';
+//            include 'menus/menu_herramientas.php';
             include 'menus/menu_configuracion.php';
             include 'menus/menu_administrador.php';
             ?>

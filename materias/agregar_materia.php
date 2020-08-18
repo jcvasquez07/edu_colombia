@@ -31,7 +31,6 @@ if (isset($_POST['guardar'])) {
             $error = "No se pudo actualizar la tabla de ofertas educativas. El servidor dijo: " . htmlspecialchars($mysqli->error);
         }
     }
-    echo $query;
     $resultado = $mysqli->query($query);
     if ($mysqli->error) {
         $error = "No se pudo $operacion el registro en la tabla de materias. El servidor dijo: " . htmlspecialchars($mysqli->error);
@@ -67,12 +66,7 @@ if (isset($_GET['id_materia'])) {
     $titulo = "Editar Asignatura";
     $texto_boton = " Actualizar Asignatura";
     $id_materia = filter_input(INPUT_GET, 'id_materia');
-    $query = "SELECT 
-                materias.* 
-            FROM 
-                materias 
-            WHERE 
-                id = '$id_materia'";
+    $query = "SELECT materias.* FROM materias WHERE id = '$id_materia'";
     $resultado = $mysqli->query($query);
     $row = $resultado->fetch_assoc();
 }

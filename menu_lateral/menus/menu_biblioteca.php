@@ -6,9 +6,9 @@
     </a>
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="main.php?pagina=subir_libros" class="nav-link">
                 <i class="fa fa-atlas nav-icon"></i>
-                <p>Libros Fisicos</p>
+                <p>Subir libros</p>
             </a>
         </li>
         <li class="nav-item">

@@ -12,7 +12,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="main.php?pagina=listado_coordinadores" class="nav-link">
+            <a href="main.php?pagina=listado_asesores" class="nav-link">
                 <i class="fas fa-users"></i>
                 <p>Listado de Asesores</p>
             </a>

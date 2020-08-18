@@ -1,3 +1,11 @@
+<?php
+if (isset($_POST['borrar'])) {
+    $id = filter_input(INPUT_POST, 'id');
+    $query = "DELETE FROM ofertas_educativas WHERE id = '$id'";
+    $resultado = $mysqli->query($query);
+}
+?>
+
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -19,9 +27,10 @@
     <table class="table table-hover" id="dt_listado">
         <thead class="thead-light">
             <tr>
-                <th scope="col">#</th>  
+                <th>#</th>  
                 <th>C&#243;digo</th>
-                <th scope="col">Nombre de la Oferta Educativa</th>
+                <th>Nombre de la Oferta Educativa</th>
+                <th></th>
             </tr>
         </thead>
         <tbody data-link="row" class="rowlink">
@@ -35,6 +44,37 @@
                     <td scope="row"><?php echo ++$i; ?></td>
                     <td scope="row"><?php echo $row['codigo_oferta']; ?></td>
                     <td><a href="main.php?pagina=editar_oferta&id_oferta=<?php echo $row['id']; ?>"><?php echo $row['nombre_oferta']; ?></a></td>
+
+                    <td class="rowlink-skip">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalBorrar<?php echo $row['id']; ?>">Borrar</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="modalBorrar<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalBorrarLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalBorrarLabel">Advertencia</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Se va a borrar la oferta educativa <strong><?php echo strtoupper($row['nombre_oferta']); ?></strong>,<br/>
+                                        Esta acci&#243;n no puede deshacerse.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <form action="" method="POST">
+                                            <input type="hidden" name="id" value="<?php echo $row['id']; ?>" />
+                                            <button type="submit" name="borrar" class="btn btn-danger">Borrar</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td> 
                 </tr>
                 <?php
             }
