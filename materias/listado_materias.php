@@ -36,7 +36,14 @@ if (isset($_POST['borrar'])) {
                 <th>Promedio Final</th>
                 <th>Grupo</th>
                 <th>Docente</th>
-                <th></th>
+                <?php
+                $haystack = array("1");
+                if (in_array($_SESSION['rol'], $haystack)) {
+                    ?>
+                    <th></th>
+                    <?php
+                }
+                ?>
             </tr>
         </thead>
         <tbody data-link="row" class="rowlink">
@@ -61,45 +68,65 @@ if (isset($_POST['borrar'])) {
                 <tr>
                     <td><?php echo ++$i; ?></td>
                     <td><?php echo $row['codigo_materia']; ?></td>
-                    <td><a href="main.php?pagina=editar_materia&id_materia=<?php echo $row['id']; ?>"><?php echo $row['nombre_materia']; ?></a></td>
+                    <td>
+                        <?php
+                        $haystack = array("1");
+                        if (in_array($_SESSION['rol'], $haystack)) {
+                            echo $row['nombre_materia'];
+                        } else {
+                            ?>
+                            <a href="main.php?pagina=editar_materia&id_materia=<?php echo $row['id']; ?>">
+                                <?php echo $row['nombre_materia']; ?>
+                            </a>
+                            <?php
+                        }
+                        ?>
+                    </td>
                     <td><?php echo $row['nombre_nivel_academico']; ?></td>
                     <td><?php echo $row['nombre_oferta']; ?></td>
                     <td><?php echo $row['aprobacion_promedio']; ?></td>
                     <td><?php echo $row['promedio_final']; ?></td>
                     <td><?php echo $row['nombre_grupo']; ?></td>
-                    
-                    <td><a href="main.php?pagina=docentes_materia&id_materia=<?php echo $row['id']; ?>" class=" text-white btn btn-primary">Ver Docentes</a></td>
-                    
-                    <td class="rowlink-skip">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalBorrar<?php echo $row['id']; ?>">Borrar</button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="modalBorrar<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalBorrarLabel"
-                             aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modalBorrarLabel">Advertencia</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Se va a borrar la materia <strong><?php echo strtoupper($row['nombre_materia']); ?></strong>,<br/>
-                                        Esta acci&#243;n no puede deshacerse.
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                        <form action="" method="POST">
-                                            <input type="hidden" name="id" value="<?php echo $row['id']; ?>" />
-                                            <button type="submit" name="borrar" class="btn btn-danger">Borrar</button>
-                                        </form>
 
+                    <td><a href="main.php?pagina=docentes_materia&id_materia=<?php echo $row['id']; ?>" class=" text-white btn btn-primary">Ver Docentes</a></td>
+
+                    <?php
+                    $haystack = array("1");
+                    if (in_array($_SESSION['rol'], $haystack)) {
+                        ?>
+                        <td class="rowlink-skip">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalBorrar<?php echo $row['id']; ?>">Borrar</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="modalBorrar<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalBorrarLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalBorrarLabel">Advertencia</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Se va a borrar la materia <strong><?php echo strtoupper($row['nombre_materia']); ?></strong>,<br/>
+                                            Esta acci&#243;n no puede deshacerse.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                            <form action="" method="POST">
+                                                <input type="hidden" name="id" value="<?php echo $row['id']; ?>" />
+                                                <button type="submit" name="borrar" class="btn btn-danger">Borrar</button>
+                                            </form>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </td> 
+                        </td> 
+                        <?php
+                    }
+                    ?>
                 </tr>
                 <?php
             }

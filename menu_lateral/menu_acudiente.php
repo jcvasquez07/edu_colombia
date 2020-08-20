@@ -30,6 +30,8 @@
             include 'menus/menu_calificacion.php';
 //            include 'menus/menu_otros.php';
             include 'menus/menu_biblioteca.php';
+            include 'menus/menu_tarifas.php';
+//            include 'menus/menu_informes.php';
 //            include 'menus/menu_herramientas.php';
             include 'menus/menu_administrador.php';
             ?>

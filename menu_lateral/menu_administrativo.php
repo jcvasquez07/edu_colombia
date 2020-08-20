@@ -31,7 +31,6 @@
 //            include 'menus/menu_otros.php';
             include 'menus/menu_biblioteca.php';
 //            include 'menus/menu_herramientas.php';
-            include 'menus/menu_administrador.php';
             ?>
         </ul>
     </nav>
