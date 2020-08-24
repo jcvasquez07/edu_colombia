@@ -93,7 +93,7 @@ if (isset($_GET['id_grupo'])) {
                 <div class="form-group row">
                     <label for="nombre_grupo" class="col-sm-3 col-form-label">Nombre del Grupo</label>
                     <div class="col-sm-9">
-                        <input type="text" name="nombre_grupo" class="form-control" id="nombre_grupo" placeholder="Nombre del Grupo" value="<?php echo $row['nombre_grupo']; ?>" required>
+                        <input type="text" name="nombre_grupo" class="form-control" id="nombre_grupo" placeholder="Nombre del Grupo" value="<?php echo ['nombre_grupo']; ?>" required>
                     </div>
                 </div> 
 

@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Listado de Grupos</h1>
+                <h1 class="m-0 text-dark">Listado de Grupos </h1>
                 <p class="text-muted">[Click en la fila para editar / borrar]</p>
             </div>
         </div>
@@ -10,11 +10,18 @@
 </div>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-10">
-            <a href="main.php?pagina=agregar_grupo" class="btn btn-success mb-2" role="button" aria-pressed="true">Agregar Grupo</a></p>
+    <?php
+    $no_agregar = array(5);
+    if (!in_array($_SESSION['rol'], $no_agregar)) {
+        ?>
+        <div class="row">
+            <div class="col-10">
+                <a href="main.php?pagina=agregar_grupo" class="btn btn-success mb-2" role="button" aria-pressed="true">Agregar Grupo</a></p>
+            </div>
         </div>
-    </div>
+        <?php
+    }
+    ?>
 
     <table class="table table-hover" id="dt_listado">
         <thead class="thead-light">

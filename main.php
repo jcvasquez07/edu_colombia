@@ -161,6 +161,7 @@ if (isset($_GET['pagina'])) {
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/4.0.0/js/jasny-bootstrap.min.js"></script>
         <!-- Datatables -->        
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf8" src="dist/js/Chart.min.js"></script>
         <!-- Scripts Locales -->
         <script src="dist/js/scripts_locales.js"></script>
 

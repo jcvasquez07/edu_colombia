@@ -1,9 +1,5 @@
 <?php
 switch($_SESSION['rol']) {
-    case '4':
-        // acudiente
-        include 'menu_lateral/menu_acudiente.php';
-        break;
     case '1':
         // administrador
         include 'menu_lateral/menu_administrador.php';
@@ -13,17 +9,21 @@ switch($_SESSION['rol']) {
         // administrativo y secretaria
         include 'menu_lateral/menu_administrativo.php';
         break;
-    case '7':
-        // asistente
-        include 'menu_lateral/menu_asistente.php';
-        break;
-    case '6':
-        // coordinador
-        include 'menu_lateral/menu_coordinador.php';
+    case '4':
+        // acudiente
+        include 'menu_lateral/menu_acudiente.php';
         break;
     case '5':
         // docente
         include 'menu_lateral/menu_docente.php';
+        break;
+    case '6':
+        // coordinador
+        include 'menu_lateral/menu_asesor.php';
+        break;
+    case '7':
+        // asistente
+        include 'menu_lateral/menu_asistente.php';
         break;
     case '8':
         // estudiante

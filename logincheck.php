@@ -39,7 +39,8 @@ if ($resultado->num_rows == 1) {
             // Ok, si está activo, entonces recuperamos valores que vamos a necesitar
             $_SESSION['logged'] = TRUE;            
             $_SESSION['usuario_id'] = $fila['id'];
-            $_SESSION['nombre_usuario_logeado'] = $fila['nombre'] . " " . $fila['apellido1'] . " " . $fila['apellido2'];
+            $_SESSION['nombre_usuario_logeado'] = $fila['nombre1'] . " " . $fila['nombre1']  . " " . $fila['apellido1'] . " " . $fila['apellido2'];
+            $_SESSION['nombre_corto__usuario_logeado'] = $fila['nombre1'] . " " . $fila['apellido1'];
             // Los roles están en la tabla 'roles': 1 - administrador hasta 8 - estudiante
             $_SESSION['rol'] = $fila['rol'];
             

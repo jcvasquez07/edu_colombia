@@ -8,22 +8,16 @@ switch($_SESSION['rol']) {
     case '3':
         include 'dashboard_pendiente.php';
         break;
-    case '4':
-        include 'dashboard_pendiente.php';
-        break;
     case '5':
-        include 'dashboard_pendiente.php';
+        include 'dashboard_docente.php';
         break;
     case '6':
-        include 'dashboard_pendiente.php';
+        include 'dashboard_asesor.php';
         break;
-    case '7':
-        include 'dashboard_pendiente.php';
+    case '8':
+        include 'dashboard_estudiante.php';
         break;
     default:
-    case '8':
-        include 'dashboard_pendiente.php';
-        break;
         include 'dashboard_pendiente.php';
         break;
 }
